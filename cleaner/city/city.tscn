@@ -47,7 +47,7 @@ position = Vector2( 800.5, -28 )
 shape = SubResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 275, 415 )
+position = Vector2( 380, 416 )
 
 [node name="GarbageProvider" parent="." instance=ExtResource( 3 )]
 garbages = [ ExtResource( 6 ), ExtResource( 5 ) ]
@@ -61,3 +61,4 @@ position = Vector2( 55, 737 )
 position = Vector2( 1521, 732 )
 
 [node name="Broom" parent="." instance=ExtResource( 7 )]
+position = Vector2( 805, -659 )

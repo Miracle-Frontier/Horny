@@ -19,6 +19,7 @@ func set_player_to_random_position() -> void:
 	var position:Vector2 = player.global_position
 	position.x = get_random_x_position()
 	player.global_position = position
+	player.init_broom(broom)
 
 
 func create_garbages() -> Array:
@@ -32,10 +33,8 @@ func create_garbages() -> Array:
 	
 	return garbages
 
-func clear_garbage(garbage: Node2D) -> void:
-	print("Clear garbage!")
-	garbage.set_blocked()
-	broom.clear(garbage)
+func clear_garbage() -> void:
+	broom.clear()
 
 
 func put_garbages_to_random_positions(garbages: Array) -> void:
