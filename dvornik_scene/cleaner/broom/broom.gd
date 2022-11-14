@@ -21,6 +21,7 @@ func clear() -> void:
 	twin_show()
 	$BroomArea/CollisionShape2D.disabled = false
 	show_animation()
+	get_parent().get_node("BroomSweep").play()
 
 func show_animation():
 	match player.get_turn_side():

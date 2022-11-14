@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/walking_fast.mp3-0b39a448dd47442a60e621026fa2edd7.mp3str"
+
+[deps]
+
+source_file="res://dvornik_scene/assets/walking_fast.mp3"
+dest_files=[ "res://.import/walking_fast.mp3-0b39a448dd47442a60e621026fa2edd7.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

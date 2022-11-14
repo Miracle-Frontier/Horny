@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/broom_sweep.mp3-9f359b4a5cf26b74c9f14a9c6d915225.mp3str"
+
+[deps]
+
+source_file="res://dvornik_scene/assets/broom_sweep.mp3"
+dest_files=[ "res://.import/broom_sweep.mp3-9f359b4a5cf26b74c9f14a9c6d915225.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

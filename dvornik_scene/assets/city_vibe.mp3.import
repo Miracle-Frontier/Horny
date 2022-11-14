@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/city_vibe.mp3-7ad5839430fbef6a2fcca55db368d296.mp3str"
+
+[deps]
+
+source_file="res://dvornik_scene/assets/city_vibe.mp3"
+dest_files=[ "res://.import/city_vibe.mp3-7ad5839430fbef6a2fcca55db368d296.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

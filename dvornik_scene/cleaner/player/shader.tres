@@ -1,0 +1,90 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=2]
+
+[sub_resource type="Shader" id=10]
+code = "shader_type canvas_item;
+
+//uniform vec4 flash_color: hint_color = vec4(1.0); // export variable
+//uniform float flash_modifier: hint_range(0.0,1.0) = 1;
+
+uniform float scale : hint_range(-2, 10) = 2.0; // Можно анимировать через AnimationPlayer
+uniform sampler2D gradient;
+uniform sampler2D curve;
+
+void fragment()
+{
+	// И много чего еще в плейлисте шейдеров (эффекты огня, итд) (ссылка https://www.youtube.com/watch?v=1pJyYtBAHks)
+	// Именно так создаются волны, distortionом от шума и сдвижением шага
+	// Distortion в зависимости от картинки (Так же дополнительно можно генерировать шумы, и прочее, инфа тут: https://www.youtube.com/watch?v=1pJyYtBAHks)
+	//vec2 distortedUV = SCREEN_UV + texture(TEXTURE, UV).a * 0.1; // В зависимости от альфы будет увеличиваться искревление
+	//vec4 screenColor = texture(SCREEN_TEXTURE, distortedUV);
+	// COLOR = screenColor;
+	// Get screen
+	//vec4 screenColor = texture(SCREEN_TEXTURE, SCREEN_UV); // Get Screen pixel 
+	//COLOR = screenColor;
+	
+	// Curves и много чего еще в плейлисте шейдеров (ссылка https://www.youtube.com/watch?v=1pJyYtBAHks))
+	//vec2 vecToCenter = vec2(0.5, 0.5) - UV; // Вычитание координаты текущего пикселя из центра (Расстояние отсюда до центра)
+	//float distToCenter = length(vecToCenter);
+	//float curveValue = texture(curve, vec2(distToCenter)).r; // Получить red в зависимости от длины до центра и в зависимости от кривой
+	//vec2 diff = normalize(vecToCenter) * 0.6 * curveValue; // Вычислить девиацию от screen_uv 
+	//COLOR = texture(SCREEN_TEXTURE, SCREEN_UV-diff);
+	
+
+	// Получение текстуры градиента и смешивание
+	//vec4 pixelColor = texture(TEXTURE, UV);
+	//vec4 gradientColor = texture(gradient, UV); // uniform sampler2D gradient;
+	//COLOR = pixelColor + gradientColor * 0.4;
+	
+
+	
+	// Почему нужен texture()
+	//vec4 pixelColor = texture(TEXTURE, UV); 
+	//COLOR = pixelColor; // Изначально COLOR в vec3, поэтому без texture() он применяется на все
+	//COLOR.rgb = COLOR.rrr;
+
+	// Весь код прогоняется для одного пикселя каждый раз (UV - Координата текущего пикселя)
+	//vec4 pixel_color = texture(TEXTURE, UV); // получаем цвет пикселя согласно текущему UV и текстуре из которой получаем
+	//float brightness = (pixel_color.r+pixel_color.g+pixel_color.b)/3.0; // Получаем освещение - просто цвет пикселя вместе поделить на 3
+	//COLOR = vec4(brightness, brightness, brightness, pixel_color.a); // Применяем его
+
+	// Искревление пикселей
+//	vec2 distortedUV = UV;
+//	distortedUV.x += distortedUV.y * 0.2;
+//	vec4 color = texture(TEXTURE, distortedUV);
+//	COLOR = color; 
+
+// Микс цветов (флэш)
+//	vec4 color = texture(TEXTURE, UV);
+//	color.rgb = mix(color.rgb, flash_color.rgb, flash_modifier);
+//	COLOR = color;
+}
+
+// Микс цветов
+//void fragment()
+//{
+//	vec4 color = texture(TEXTURE, UV); // Gets color
+//	color.rgb = mix(color.rgb, vec3(1,1,1).rgb, 0.5);
+//	COLOR = color;
+//}"
+
+[sub_resource type="Curve" id=13]
+_data = [ Vector2( 0.196629, 0.575 ), 0.0, 0.0, 0, 0, Vector2( 0.724719, 0.838636 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=14]
+curve = SubResource( 13 )
+
+[sub_resource type="Gradient" id=11]
+interpolation_mode = 2
+offsets = PoolRealArray( 0, 0.535484, 0.948387, 0.993548, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.535484, 0.535484, 0.535484, 1, 0.520036, 0.520036, 0.520036, 1, 0.470968, 0.470968, 0.470968, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture2D" id=12]
+gradient = SubResource( 11 )
+width = 17
+fill_to = Vector2( 0.553571, 0.374479 )
+
+[resource]
+shader = SubResource( 10 )
+shader_param/scale = 2.0
+shader_param/gradient = SubResource( 12 )
+shader_param/curve = SubResource( 14 )

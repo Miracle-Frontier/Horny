@@ -9,8 +9,11 @@ onready var animation:AnimationPlayer = $AnimationPlayer
 onready var clear_area:Area2D = $ClearArea
 var current_turn = TurnSade.NONE
 
+onready var walking_sound_player
+
 func _ready() -> void:
 	turn_side(TurnSade.LEFT)
+	walking_sound_player = get_parent().get_node("Walking")
 	
 func get_clear_area() -> Area2D:
 	return clear_area	
@@ -36,8 +39,10 @@ func _physics_process(_delta: float) -> void:
 func update_animation(isWalk: bool):
 	if isWalk:
 		$WalkingAnimation.play("Walking")
+		walking_sound_player.stream_paused = false;
 	else:
 		$WalkingAnimation.play("Idle")
+		walking_sound_player.stream_paused = true;
 	
 
 
