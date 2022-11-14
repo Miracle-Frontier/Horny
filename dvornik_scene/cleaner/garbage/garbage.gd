@@ -1,12 +1,11 @@
 extends KinematicBody2D
 
-const TWEEN_DURATION: float = 0.4
-signal need_clear
-onready var mouse_icon = $Sprite
-var busy:bool = false
+signal cleared
 
-func _ready() -> void:
-	pass
+const TWEEN_DURATION: float = 0.4
+
+var _is_cleared:bool = false
+onready var mouse_icon = $Mouse
 
 
 func show_clean_variant() -> void:
@@ -18,6 +17,9 @@ func hide_clean_variants() -> void:
 
 
 func clear() -> void:
+	if _is_cleared: return
+	_is_cleared = true
+	emit_signal("cleared")
 	$CollisionShape2D.disabled = true
 	yield(twin_hide(), "finished")
 	queue_free()	
