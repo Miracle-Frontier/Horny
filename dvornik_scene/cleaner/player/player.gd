@@ -1,15 +1,16 @@
 extends KinematicBody2D
 
+class_name Player
+
 enum TurnSade { NONE = 0, LEFT = 1, RIGHT = 2}
 
-export var speed:float = 300
+export var speed:float = 200
 onready var animation:AnimationPlayer = $AnimationPlayer
 onready var clear_area:Area2D = $ClearArea
 var current_turn = TurnSade.NONE
 
 func _ready() -> void:
 	turn_side(TurnSade.LEFT)
-	
 	
 func get_clear_area() -> Area2D:
 	return clear_area	
@@ -19,7 +20,7 @@ func get_turn_side() -> int:
 	return current_turn
 	
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var direction = Vector2(0,10)
 	if Input.is_action_pressed("ui_left"):
 		direction.x = -1
@@ -51,11 +52,11 @@ func turn_side(side: int) -> void:
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
-	if body.has_method("show_clean_variant"):
+	if body.is_in_group("garbage"):
 		body.show_clean_variant()
 
 
 func _on_Area2D_body_exited(body: Node) -> void:
-	if body.has_method("hide_clean_variants"):
+	if body.is_in_group("garbage"):
 		body.hide_clean_variants()
 

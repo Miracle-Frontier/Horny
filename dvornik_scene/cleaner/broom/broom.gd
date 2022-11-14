@@ -3,17 +3,21 @@ extends Node2D
 const TWEEN_DURATION: float = 0.2
 const TurnSide = preload("res://dvornik_scene/cleaner/player/player.gd").TurnSade
 
-var player: Node2D
+var player: Player
 var current_tween:SceneTreeTween
 
 
 
-func set_player(player:Node2D) -> void:
-	self.player = player
+func set_player(_player:Node2D) -> void:
+	self.player = _player
 
 
 func clear() -> void:
+	var turn = player.get_turn_side()
 	global_position = player.get_clear_area().global_position
+	
+	global_position.y -= 70
+	global_position.x += 70 * (1 if turn==player.TurnSade.RIGHT else -1)
 	twin_show()
 	$BroomArea/CollisionShape2D.disabled = false
 	show_animation()
@@ -50,6 +54,5 @@ func twin_hide(duration: float = TWEEN_DURATION) -> SceneTreeTween:
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
-	print(body)
 	if body.has_method("clear"):
 		body.clear()

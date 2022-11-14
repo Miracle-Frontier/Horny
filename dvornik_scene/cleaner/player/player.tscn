@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://dvornik_scene/assets/dvornik_walk.png" type="Texture" id=1]
 [ext_resource path="res://dvornik_scene/cleaner/player/player.gd" type="Script" id=2]
+[ext_resource path="res://dvornik_scene/assets/shadow.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 94, 200 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 3.375, 4.4375 )
+extents = Vector2( 81.959, 36.2813 )
 
 [sub_resource type="Animation" id=5]
 length = 0.001
@@ -34,6 +35,18 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ClearArea/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 184, -34 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -63,6 +76,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("ClearArea/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -62, -33 ) ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "turn_right"
@@ -90,6 +115,18 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ClearArea/CollisionShape2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 62.959, -34 ) ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -145,6 +182,12 @@ collision_layer = 2
 collision_mask = 3
 script = ExtResource( 2 )
 
+[node name="Shadow" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.435294 )
+position = Vector2( -3, -16 )
+scale = Vector2( 0.913934, 0.658824 )
+texture = ExtResource( 3 )
+
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 1.52588e-05, -247 )
 scale = Vector2( 0.7, 0.7 )
@@ -161,6 +204,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClearArea"]
+position = Vector2( 184, -34 )
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
