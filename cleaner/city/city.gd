@@ -1,5 +1,7 @@
 extends Node2D
 
+const LEFT_MOUSE:int = 1;
+
 const min_distance:float = 250.0
 export var garbage_count:int = 2
 onready var garbage_provider:Node = $GarbageProvider
@@ -73,3 +75,8 @@ func get_spawn_bound() -> Vector2:
 	var min_x:float  = bound_min.global_position.x
 	var max_x:float = bound_max.global_position.x
 	return Vector2(min_x, max_x)
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.is_pressed() and event.get_button_index() == LEFT_MOUSE:
+			clear_garbage()
