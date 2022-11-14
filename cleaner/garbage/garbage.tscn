@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://cleaner/garbage/garbage.gd" type="Script" id=2]
+[ext_resource path="res://assets/mouse.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 67, 68 )
+
+[node name="Garbage" type="KinematicBody2D" groups=["garbage"]]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -2, -2 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0.999996, -150 )
+scale = Vector2( 0.523585, 0.512658 )
+texture = ExtResource( 3 )

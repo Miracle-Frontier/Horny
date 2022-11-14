@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="JiraGodot"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://cleaner/world/world.tscn"
 boot_splash/show_image=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 
@@ -51,6 +51,16 @@ texture={
 "stream": false,
 "svg/scale": 1.0
 }
+
+[layer_names]
+
+2d_physics/layer_1="environment"
+2d_physics/layer_2="player"
+2d_physics/layer_3="garbage"
+
+[mono]
+
+project/assembly_name="JiraGodot"
 
 [physics]
 
