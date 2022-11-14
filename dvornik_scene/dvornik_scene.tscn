@@ -1,0 +1,64 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://dvornik_scene/cleaner/garbage/garbage_provider.tscn" type="PackedScene" id=1]
+[ext_resource path="res://dvornik_scene/cleaner/garbage/scrub.tscn" type="PackedScene" id=2]
+[ext_resource path="res://dvornik_scene/cleaner/garbage/puddle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://dvornik_scene/cleaner/broom/broom.tscn" type="PackedScene" id=4]
+[ext_resource path="res://dvornik_scene/cleaner/player/player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://dvornik_scene/assets/background.png" type="Texture" id=6]
+[ext_resource path="res://dvornik_scene/dvornik_scene.gd" type="Script" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 38, 410 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 44.875, 408.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 801.5, 87.5 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 802.5, 26.5 )
+
+[node name="DvornikScene" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 800.5, 450.5 )
+scale = Vector2( 0.999375, 1.00111 )
+texture = ExtResource( 6 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -38, 410 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 1647.12, 393 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 800, 859 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 800.5, -28 )
+shape = SubResource( 4 )
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 380, 416 )
+
+[node name="GarbageProvider" parent="." instance=ExtResource( 1 )]
+garbages = [ ExtResource( 3 ), ExtResource( 2 ) ]
+
+[node name="SpawnBound" type="Node2D" parent="."]
+
+[node name="Min" type="Position2D" parent="SpawnBound"]
+position = Vector2( 55, 737 )
+
+[node name="Max" type="Position2D" parent="SpawnBound"]
+position = Vector2( 1521, 732 )
+
+[node name="Broom" parent="." instance=ExtResource( 4 )]
+position = Vector2( 805, -659 )
