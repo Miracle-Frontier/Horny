@@ -18,7 +18,7 @@ func clear() -> void:
 	global_position = player.get_clear_area().global_position
 	
 	global_position.y -= 70
-	global_position.x += 70 * (1 if turn==player.TurnSade.RIGHT else -1)
+	global_position.x += 70 * (1 if turn==player.TurnSide.RIGHT else -1)
 	twin_show()
 	$BroomArea/CollisionShape2D.disabled = false
 	_show_animation()
@@ -37,7 +37,7 @@ func _show_animation() -> void:
 func _show_smoke() -> void:
 	var smoke:Particles2D = SmokeEffect.instance()
 	get_tree().current_scene.add_child(smoke)
-	
+	smoke.emitting = true
 	var smoke_posotion:Vector2 = global_position
 	smoke_posotion.y += SMOKE_POSITION_OFFSET
 	smoke.global_position = smoke_posotion
