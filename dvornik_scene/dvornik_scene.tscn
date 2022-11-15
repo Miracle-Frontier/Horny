@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://dvornik_scene/cleaner/garbage/scrub.tscn" type="PackedScene" id=1]
 [ext_resource path="res://dvornik_scene/assets/city_vibe.mp3" type="AudioStream" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://dvornik_scene/assets/ui/white.png" type="Texture" id=9]
 [ext_resource path="res://dvornik_scene/assets/walking_fast.mp3" type="AudioStream" id=10]
 [ext_resource path="res://dvornik_scene/assets/broom_sweep.mp3" type="AudioStream" id=11]
+[ext_resource path="res://start_cutscene/assets/background.png" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 44.875, 408.5 )
@@ -20,6 +21,14 @@ extents = Vector2( 500000, 10 )
 
 [node name="DvornikScene" type="Node2D"]
 script = ExtResource( 7 )
+
+[node name="Dark" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Background" type="Sprite" parent="Dark"]
+z_index = 1000
+texture = ExtResource( 12 )
+centered = false
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

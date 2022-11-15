@@ -20,6 +20,10 @@ func _ready() -> void:
 	yield(get_tree(),"idle_frame")
 	camera.smoothing_enabled = true
 	broom.set_player($Player)
+	
+	var current_tween = create_tween()
+	current_tween.set_trans(Tween.TRANS_CUBIC)
+	current_tween.tween_property($Dark/Background, "modulate:a", 0.0, 8.0)
 
 func clear_garbage() -> void:
 	broom.clear()

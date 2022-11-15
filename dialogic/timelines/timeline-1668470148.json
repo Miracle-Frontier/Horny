@@ -1,0 +1,281 @@
+{
+	"events": [
+		{
+			"event_id": "dialogic_024",
+			"set_theme": "theme-1668470574.cfg"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "..."
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "If it was not for the mirror, at least the girl could've made it for a little longer"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "But now it's too late"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Come closer, [color=#651b81]Maria[/color], your favourite story time"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "What? You prefer to be all alone in that shelf?"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Very well then. But I am still going to tell it"
+		},
+		{
+			"emit_signal": "Background",
+			"event_id": "dialogic_040"
+		},
+		{
+			"audio_bus": "Master",
+			"background-music": "play",
+			"event_id": "dialogic_031",
+			"event_name": "BackgroundMusic",
+			"fade_length": 0,
+			"file": "res://start_cutscene/assets/homeplanet.mp3",
+			"volume": -15
+		},
+		{
+			"event_id": "dialogic_024",
+			"set_theme": "theme-1668474017.cfg"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "141 years ago"
+		},
+		{
+			"emit_signal": "1RockFall",
+			"event_id": "dialogic_040"
+		},
+		{
+			"event_id": "dialogic_024",
+			"set_theme": "theme-1668476091.cfg"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Around 151 years ago a big rock crashed into home planet marking the beginning of Era 4"
+		},
+		{
+			"emit_signal": "1RockFall",
+			"event_id": "dialogic_040"
+		},
+		{
+			"emit_signal": "2RockDestroy",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Before rock even hit the ground, 3/4 of planet population was already dead"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Few years later, group of 3 young scientists studying the remainings of the rock discovered something marvelous"
+		},
+		{
+			"emit_signal": "2RockDestroy",
+			"event_id": "dialogic_040"
+		},
+		{
+			"emit_signal": "3Lab",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "New element, which allowed it's bearer to restructure any organic form it comes in contact with"
+		},
+		{
+			"emit_signal": "3Lab",
+			"event_id": "dialogic_040"
+		},
+		{
+			"emit_signal": "4LabFine",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "This could've been used to [color=#fff117]UPGRADE[/color] that organic form."
+		},
+		{
+			"emit_signal": "4LabFine",
+			"event_id": "dialogic_040"
+		},
+		{
+			"emit_signal": "5LabDestroy",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Or to destroy it completely"
+		},
+		{
+			"emit_signal": "5LabDestroy",
+			"event_id": "dialogic_040"
+		},
+		{
+			"emit_signal": "6MeEmergency",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "ME decided to keep rock's abilities in secret, protecting the world from possible horror that it could bring"
+		},
+		{
+			"emit_signal": "6MeEmergency",
+			"event_id": "dialogic_040"
+		},
+		{
+			"event_id": "dialogic_015",
+			"id": "anchor-1634488067",
+			"index": 0,
+			"name": "1"
+		},
+		{
+			"event_id": "dialogic_024",
+			"set_theme": "theme-1668474017.cfg"
+		},
+		{
+			"audio_bus": "Master",
+			"background-music": "play",
+			"event_id": "dialogic_031",
+			"event_name": "BackgroundMusic",
+			"fade_length": 1,
+			"file": "",
+			"volume": 0
+		},
+		{
+			"event_id": "dialogic_024",
+			"set_theme": "theme-1668477654.cfg"
+		},
+		{
+			"audio": "play",
+			"audio_bus": "Master",
+			"event_id": "dialogic_030",
+			"event_name": "AudioEvent",
+			"file": "res://start_cutscene/assets/alarm.wav",
+			"volume": -15
+		},
+		{
+			"event_id": "dialogic_024",
+			"set_theme": "theme-1668478505.cfg"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "**DING-DING-DING-DING-DING**"
+		},
+		{
+			"audio": "play",
+			"audio_bus": "Master",
+			"event_id": "dialogic_030",
+			"event_name": "AudioEvent",
+			"file": "",
+			"volume": 0
+		},
+		{
+			"event_id": "dialogic_024",
+			"set_theme": "theme-1668477654.cfg"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Already? It's time for my shift"
+		},
+		{
+			"emit_signal": "7City",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Jira is probably the worst place you can end up in"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "ME-addicts, cryptojerks' bands, and the worst air on the whole home planet."
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "This city will beat you up, devour you"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Unless you don't put all your morals away  and adapt"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Become a complete bimbo and a dirtbag like everyone else here"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "..."
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "I didn't adapt."
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Time to work."
+		},
+		{
+			"emit_signal": "7City",
+			"event_id": "dialogic_040"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1668470148.json",
+		"name": "start_cutscene"
+	}
+}

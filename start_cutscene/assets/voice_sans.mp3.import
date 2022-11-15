@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/voice_sans.mp3-7466a59112ab12f353970f7da8ef0777.mp3str"
+
+[deps]
+
+source_file="res://start_cutscene/assets/voice_sans.mp3"
+dest_files=[ "res://.import/voice_sans.mp3-7466a59112ab12f353970f7da8ef0777.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,72 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://start_cutscene/start_cutscene.gd" type="Script" id=1]
+[ext_resource path="res://start_cutscene/assets/background.png" type="Texture" id=2]
+[ext_resource path="res://start_cutscene/assets/5_lab_destroy.png" type="Texture" id=3]
+[ext_resource path="res://start_cutscene/assets/6_me_emergency.png" type="Texture" id=4]
+[ext_resource path="res://start_cutscene/assets/3_lab.png" type="Texture" id=5]
+[ext_resource path="res://start_cutscene/assets/border.png" type="Texture" id=6]
+[ext_resource path="res://start_cutscene/assets/8_2_city_close_look.png" type="Texture" id=7]
+[ext_resource path="res://start_cutscene/assets/1_rock_fall.png" type="Texture" id=8]
+[ext_resource path="res://start_cutscene/assets/4_lab_fine.png" type="Texture" id=9]
+[ext_resource path="res://start_cutscene/assets/7_city.png" type="Texture" id=10]
+[ext_resource path="res://start_cutscene/assets/2_rock_destroy.png" type="Texture" id=11]
+[ext_resource path="res://start_cutscene/assets/8_1_city_close_look.png" type="Texture" id=12]
+
+[node name="StartCutscene" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Background" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 2 )
+centered = false
+
+[node name="1RockFall" type="Sprite" parent="."]
+visible = false
+position = Vector2( 783, 383 )
+texture = ExtResource( 8 )
+
+[node name="2RockDestroy" type="Sprite" parent="."]
+visible = false
+position = Vector2( 797, 394 )
+texture = ExtResource( 11 )
+
+[node name="3Lab" type="Sprite" parent="."]
+visible = false
+position = Vector2( 790, 393 )
+texture = ExtResource( 5 )
+
+[node name="Border" type="Sprite" parent="."]
+visible = false
+position = Vector2( 789, 404 )
+texture = ExtResource( 6 )
+
+[node name="4LabFine" type="Sprite" parent="."]
+visible = false
+position = Vector2( 785, 400 )
+texture = ExtResource( 9 )
+
+[node name="5LabDestroy" type="Sprite" parent="."]
+visible = false
+position = Vector2( 798, 385 )
+texture = ExtResource( 3 )
+
+[node name="6MeEmergency" type="Sprite" parent="."]
+visible = false
+position = Vector2( 786, 392 )
+texture = ExtResource( 4 )
+
+[node name="7City" type="Sprite" parent="."]
+visible = false
+position = Vector2( 813, 379 )
+texture = ExtResource( 10 )
+
+[node name="81CityCloseLook" type="Sprite" parent="."]
+visible = false
+position = Vector2( 760, 566 )
+texture = ExtResource( 12 )
+
+[node name="82CityCloseLook" type="Sprite" parent="."]
+visible = false
+position = Vector2( 792, 168 )
+texture = ExtResource( 7 )

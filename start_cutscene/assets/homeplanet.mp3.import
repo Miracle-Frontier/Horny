@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/homeplanet.mp3-115dea7ecab1873ee6590ce26bb0fdf5.mp3str"
+
+[deps]
+
+source_file="res://start_cutscene/assets/homeplanet.mp3"
+dest_files=[ "res://.import/homeplanet.mp3-115dea7ecab1873ee6590ce26bb0fdf5.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
