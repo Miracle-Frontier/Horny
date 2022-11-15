@@ -34,7 +34,6 @@ func right() -> void:
 "
 
 [node name="Smoke" type="Particles2D"]
-visible = false
 emitting = false
 one_shot = true
 explosiveness = 1.0

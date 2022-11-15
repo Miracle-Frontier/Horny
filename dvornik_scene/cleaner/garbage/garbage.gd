@@ -8,7 +8,7 @@ var _is_cleared:bool = false
 onready var mouse_icon = $Mouse
 
 func _ready():
-	connect("cleared", get_parent(), "garbage_creared")
+	connect("cleared", get_parent(), "garbage_cleared")
 
 func show_clean_variant() -> void:
 	twin_show(mouse_icon)
