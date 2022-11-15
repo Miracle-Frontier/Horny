@@ -1,11 +1,12 @@
 extends Node2D
 
 const TWEEN_DURATION: float = 0.2
-const TurnSide = preload("res://dvornik_scene/cleaner/player/player.gd").TurnSade
+const TurnSide = preload("res://dvornik_scene/cleaner/player/player.gd").TurnSide
+const SMOKE_POSITION_OFFSET: float = 70.0
+const SmokeEffect = preload("res://dvornik_scene/cleaner/smoke/smoke.tscn")
 
 var player: Player
 var current_tween:SceneTreeTween
-
 
 
 func set_player(_player:Node2D) -> void:
@@ -20,15 +21,32 @@ func clear() -> void:
 	global_position.x += 70 * (1 if turn==player.TurnSade.RIGHT else -1)
 	twin_show()
 	$BroomArea/CollisionShape2D.disabled = false
-	show_animation()
+	_show_animation()
+	_show_smoke()
 	get_parent().get_node("BroomSweep").play()
 
-func show_animation():
+
+func _show_animation() -> void:
 	match player.get_turn_side():
 		TurnSide.LEFT:
 			$AnimationPlayer.play("left_clear")
 		TurnSide.RIGHT:
 			$AnimationPlayer.play("right_clear")
+
+
+func _show_smoke() -> void:
+	var smoke:Particles2D = SmokeEffect.instance()
+	get_tree().current_scene.add_child(smoke)
+	
+	var smoke_posotion:Vector2 = global_position
+	smoke_posotion.y += SMOKE_POSITION_OFFSET
+	smoke.global_position = smoke_posotion
+	
+	match player.get_turn_side():
+		TurnSide.LEFT:
+			smoke.left()
+		TurnSide.RIGHT:
+			smoke.right()
 
 
 func cleared() -> void:
