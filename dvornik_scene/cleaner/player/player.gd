@@ -17,6 +17,7 @@ onready var animation:AnimationPlayer = $AnimationPlayer
 onready var clear_area:Area2D = $ClearArea
 onready var walking_sound_player = get_parent().get_node("Walking")
 
+
 func _ready() -> void:
 	turn_side(TurnSide.LEFT)
 	
