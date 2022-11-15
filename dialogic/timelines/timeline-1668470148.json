@@ -14,7 +14,7 @@
 			"character": "",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "If it was not for the mirror, at least the girl could've made it for a little longer"
+			"text": "If it was not for the mirror, the girl could've made it for a little longer"
 		},
 		{
 			"character": "",
@@ -152,6 +152,12 @@
 			"event_id": "dialogic_001",
 			"portrait": "",
 			"text": "ME decided to keep rock's abilities in secret, protecting the world from possible horror that it could bring"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "..."
 		},
 		{
 			"emit_signal": "6MeEmergency",
