@@ -71,7 +71,7 @@ func _smoke() -> void:
 			smoke.left()
 			
 	#yield(smoke, "tree_exiting")
-	yield(get_tree().create_timer(rand_range(1,2)), "timeout")
+	yield(get_tree().create_timer(rand_range(0.5, 2)), "timeout")
 	smoke_ready = true
 
 
