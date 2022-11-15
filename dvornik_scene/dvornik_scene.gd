@@ -4,6 +4,7 @@ const LEFT_MOUSE:int = 1;
 const MAX_SCORE = 8
 const MIN_DISTANCE = 800
 const MAX_DISTANCE = 500000
+const FADEOUT_TIME = 8.0
 const Rofi = preload("res://dvornik_scene/cleaner/rofi/rofi.tscn")
 
 export var garbage_count:int = 2
@@ -25,10 +26,13 @@ func _ready() -> void:
 	yield(get_tree(),"idle_frame")
 	camera.smoothing_enabled = true
 	broom.set_player($Player)
+	_fade_out_dark_bg()
 	
+
+func _fade_out_dark_bg() -> void:
 	var current_tween = create_tween()
 	current_tween.set_trans(Tween.TRANS_CUBIC)
-	current_tween.tween_property($Dark/Background, "modulate:a", 0.0, 8.0)
+	current_tween.tween_property($Dark/Background, "modulate:a", 0.0, FADEOUT_TIME)
 
 
 func clear_garbage() -> void:
@@ -49,6 +53,7 @@ func _show_rofi() -> void:
 	yield(rofi, "ready")
 	var rofi_position:Vector2 = player.global_position
 	rofi_position.x += get_viewport().size.x * 2
+	rofi_position.y = $RofiHeightPosition.position.y
 	rofi.global_position = rofi_position
 
 

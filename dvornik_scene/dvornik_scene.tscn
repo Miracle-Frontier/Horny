@@ -178,3 +178,6 @@ stream = ExtResource( 2 )
 volume_db = -17.479
 pitch_scale = 0.6
 autoplay = true
+
+[node name="RofiHeightPosition" type="Position2D" parent="."]
+position = Vector2( 2836, 722 )

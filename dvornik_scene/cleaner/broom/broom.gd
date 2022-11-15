@@ -19,7 +19,7 @@ func clear() -> void:
 	
 	global_position.y -= 70
 	global_position.x += 70 * (1 if turn==player.TurnSide.RIGHT else -1)
-	twin_show()
+	_tween_show()
 	$BroomArea/CollisionShape2D.disabled = false
 	_show_animation()
 	_show_smoke()
@@ -37,7 +37,6 @@ func _show_animation() -> void:
 func _show_smoke() -> void:
 	var smoke:Particles2D = SmokeEffect.instance()
 	get_tree().current_scene.add_child(smoke)
-	smoke.emitting = true
 	var smoke_posotion:Vector2 = global_position
 	smoke_posotion.y += SMOKE_POSITION_OFFSET
 	smoke.global_position = smoke_posotion
@@ -51,10 +50,10 @@ func _show_smoke() -> void:
 
 func cleared() -> void:
 	$BroomArea/CollisionShape2D.disabled = true
-	twin_hide()
+	_tween_hide()
 
 
-func twin_show(duration: float = TWEEN_DURATION) -> SceneTreeTween:
+func _tween_show(duration: float = TWEEN_DURATION) -> SceneTreeTween:
 	if current_tween != null:
 		current_tween.kill()
 	current_tween = create_tween()
@@ -63,7 +62,7 @@ func twin_show(duration: float = TWEEN_DURATION) -> SceneTreeTween:
 	return current_tween
 
 
-func twin_hide(duration: float = TWEEN_DURATION) -> SceneTreeTween:
+func _tween_hide(duration: float = TWEEN_DURATION) -> SceneTreeTween:
 	if current_tween != null:
 		current_tween.kill()
 	current_tween = create_tween()
