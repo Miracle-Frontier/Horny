@@ -7,30 +7,25 @@ const DIRECTION_DOWN:float = 1.0
 
 enum TurnSide { NONE = 0, LEFT = 1, RIGHT = 2}
 
-export(float) var speed = 200
-
+const speed : int = 500
+const acceleration : float = 1.0
+const friction : float = 0.1
+var velocity : Vector2
+var direction : Vector2
 
 func _physics_process(delta: float) -> void:
-	var direction = Vector2(0, 0)
-	if Input.is_action_pressed("ui_left"):
-		direction.x = DIRECTION_LEFT
-		_turn_side(TurnSide.LEFT)
-	elif Input.is_action_pressed("ui_right"):
-		direction.x = DIRECTION_RIGHT;
-		_turn_side(TurnSide.RIGHT)
-		
-	if Input.is_action_pressed("ui_up"):
-		direction.y = DIRECTION_UP
-	elif Input.is_action_pressed("ui_down"):
-		direction.y = DIRECTION_DOWN;
+	direction.x = float(Input.is_action_pressed("ui_right")) - float(Input.is_action_pressed("ui_left"))
+	direction.y = float(Input.is_action_pressed("ui_down")) - float(Input.is_action_pressed("ui_up"))
+	direction = direction.normalized()
 	
-	direction *= speed	
-	move_and_slide(direction)
+	velocity = lerp(velocity, direction * speed, acceleration * delta)
+	velocity = lerp(velocity, Vector2.ZERO, friction * delta)
+
+	velocity = move_and_slide(velocity)
 	
+	move_and_slide(velocity)
 	
-func _turn_side(side: int) -> void:
-	match side:
-		TurnSide.LEFT:
-			$AnimationPlayer.play("turn_left")
-		TurnSide.RIGHT:
-			$AnimationPlayer.play("tuen_right")
+	if direction.x > 0:
+		transform.x.x = abs(transform.x.x)
+	elif direction.x < 0:
+		transform.x.x = -abs(transform.x.x)

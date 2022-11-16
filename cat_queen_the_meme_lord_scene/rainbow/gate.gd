@@ -1,6 +1,6 @@
 extends Node2D
 
-var speed:float = 100
+var speed:float = 300
 
 onready var up_sprite:Sprite = $Walls/UpperWallSprite
 onready var up_sprite_collision:CollisionShape2D = $Walls/UppwerWallCollision
