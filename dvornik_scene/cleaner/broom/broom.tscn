@@ -123,7 +123,6 @@ tracks/4/keys = {
 [sub_resource type="Animation" id=5]
 resource_name = "right_clear"
 length = 0.5
-loop = true
 tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1

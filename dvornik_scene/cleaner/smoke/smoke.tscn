@@ -21,12 +21,15 @@ color_ramp = SubResource( 4 )
 script/source = "extends Particles2D
 
 func _ready() -> void:
+	one_shot = true
 	yield(get_tree().create_timer(lifetime), \"timeout\")
 	queue_free()
+
 
 func left() -> void:
 	var material := process_material as ParticlesMaterial
 	material.direction.x = -1
+
 
 func right() -> void:
 	var material := process_material as ParticlesMaterial
@@ -34,9 +37,7 @@ func right() -> void:
 "
 
 [node name="Smoke" type="Particles2D"]
-emitting = false
-one_shot = true
-explosiveness = 1.0
+explosiveness = 0.5
 process_material = SubResource( 1 )
 texture = ExtResource( 1 )
 script = SubResource( 2 )
