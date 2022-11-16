@@ -8,7 +8,7 @@ onready var gate_spawner:Node2D = $GateSpawner
 
 func _ready() -> void:
 	create_asteroid(600, 200, Vector2(2, 2))
-	create_flappy_bird(-100, 400)
+	create_flappy_bird(500, 600)
 
 func _process(delta):
 	print(get_viewport().get_mouse_position().y)

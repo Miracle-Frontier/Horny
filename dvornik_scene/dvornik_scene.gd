@@ -4,7 +4,7 @@ const LEFT_MOUSE:int = 1;
 const MAX_SCORE = 0
 const MIN_DISTANCE = 800
 const MAX_DISTANCE = 500000
-const FADEOUT_TIME = 8.0
+const FADEOUT_TIME = 1.0
 const Rofi = preload("res://dvornik_scene/cleaner/rofi/rofi.tscn")
 
 export var garbage_count:int = 2
@@ -12,6 +12,7 @@ var _score:int = 0
 var _max_player_x:float = 0.0
 var loh_showd:bool = false
 var xxx_showd:bool = false
+var rofi_initialized: bool = false
 
 onready var player:KinematicBody2D = $Player
 onready var broom:Node2D = $Broom
@@ -60,7 +61,7 @@ func _show_rofi() -> void:
 
 func _clear_all_garbage() -> void:
 	while true:
-		var garbage:Node = get_tree().current_scene.find_node("Garbage*", false, true)
+		var garbage:Node = find_node("Garbage*", false, false)
 		if garbage == null:
 			break
 		garbage.name = "Delete"
@@ -75,7 +76,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.is_pressed() and event.get_button_index() == LEFT_MOUSE:
 			clear_garbage()
-			if randf() > 0.7:
+			if randf() > 0.8:
 				if randi() % 2 == 1:
 					_loh()
 				else:
