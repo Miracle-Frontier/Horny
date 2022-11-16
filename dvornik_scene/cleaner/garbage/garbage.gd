@@ -32,7 +32,7 @@ func clear() -> void:
 	queue_free()
 
 
-func _tween_hide(object:Object = self, duration: float = TWEEN_DURATION) -> SceneTreeTween:
+func _tween_hide(object:Object = self, duration: float = TWEEN_DURATION):
 	var tween:SceneTreeTween = create_tween()
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(object, "modulate:a", 0.0, duration)

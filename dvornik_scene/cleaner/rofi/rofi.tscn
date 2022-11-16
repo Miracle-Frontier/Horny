@@ -8,7 +8,7 @@
 [ext_resource path="res://dvornik_scene/cleaner/rofi/rofi.gd" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 131, 191.5 )
+extents = Vector2( 413.091, 191.5 )
 
 [sub_resource type="ParticlesMaterial" id=2]
 emission_shape = 1
@@ -27,7 +27,7 @@ script = ExtResource( 6 )
 
 [node name="Shadow" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.435294 )
-position = Vector2( -3, -16 )
+position = Vector2( -3, 6.15385 )
 scale = Vector2( 0.913934, 0.658824 )
 texture = ExtResource( 2 )
 
@@ -50,4 +50,5 @@ texture = ExtResource( 3 )
 [node name="Sprite2" type="Sprite" parent="."]
 
 [node name="Mouse" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1, -460 )
+position = Vector2( -197.273, -240 )
+scale = Vector2( 0.5, 0.5 )

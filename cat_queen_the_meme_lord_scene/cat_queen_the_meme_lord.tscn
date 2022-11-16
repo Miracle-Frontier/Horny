@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/background.png" type="Texture" id=1]
-[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/actor1.png" type="Texture" id=2]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/rock3.png" type="Texture" id=3]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/rock1.png" type="Texture" id=4]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/warning.png" type="Texture" id=5]
@@ -12,12 +11,6 @@
 [ext_resource path="res://cat_queen_the_meme_lord_scene/cat_queen_the_meme_lord.gd" type="Script" id=10]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/rainbow/gate_spawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/player/player.tscn" type="PackedScene" id=12]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 132.25, 47.5 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 53.5, 42.5 )
 
 [node name="CatQueenTheMemeLord" type="Node2D"]
 script = ExtResource( 10 )
@@ -31,18 +24,6 @@ centered = false
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="Actor1" type="Sprite" parent="."]
-position = Vector2( 1199, 397 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Actor1"]
-position = Vector2( 120, 63 )
-shape = SubResource( 1 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Actor1"]
-position = Vector2( 202, -28 )
-shape = SubResource( 2 )
 
 [node name="Rock1" type="Sprite" parent="."]
 position = Vector2( 247, 344 )

@@ -6,7 +6,7 @@ enum TurnSide { NONE = 0, LEFT = 1, RIGHT = 2}
 const GRAVITY:float = 10.0
 const DIRECTION_LEFT:float = -1.0
 const DIRECTION_RIGHT:float = 1.0
-const SmokeEffect = preload("res://dvornik_scene/cleaner/smoke/smoke.tscn")
+var SmokeEffect = preload("res://dvornik_scene/cleaner/smoke/smoke.tscn")
 
 export var speed:float = 200
 
@@ -17,10 +17,17 @@ onready var animation:AnimationPlayer = $AnimationPlayer
 onready var clear_area:Area2D = $ClearArea
 onready var walking_sound_player = get_parent().get_node("Walking")
 
+var walking_smoke_material
 
 func _ready() -> void:
 	_turn_side(TurnSide.LEFT)
 	
+	var smoke:Particles2D = SmokeEffect.instance()
+	walking_smoke_material = smoke.process_material.duplicate()
+	walking_smoke_material.initial_velocity = 40
+	walking_smoke_material.spread = 10
+	walking_smoke_material.gravity.y = 0 
+	smoke.queue_free()
 	
 func get_clear_area() -> Area2D:
 	return clear_area	
@@ -60,11 +67,14 @@ func _smoke() -> void:
 	_smoke_ready = false
 	
 	var smoke:Particles2D = SmokeEffect.instance()
-	smoke.amount = 5
+	smoke.process_material = walking_smoke_material
+	smoke.amount = 4
+	smoke.modulate.a = 0.1
 	get_tree().current_scene.add_child(smoke)
 	
 	smoke.global_position = global_position
-	
+	smoke.global_position.x += 40
+	smoke.global_position.y -= 10
 	match get_turn_side():
 		TurnSide.LEFT:
 			smoke.right()
@@ -72,7 +82,7 @@ func _smoke() -> void:
 			smoke.left()
 			
 	#yield(smoke, "tree_exiting")
-	yield(get_tree().create_timer(rand_range(0.5, 2)), "timeout")
+	yield(get_tree().create_timer(rand_range(0, 0.1)), "timeout")
 	_smoke_ready = true
 
 
