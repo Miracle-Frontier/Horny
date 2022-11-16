@@ -1,0 +1,98 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/background.png" type="Texture" id=1]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/actor1.png" type="Texture" id=2]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/rock3.png" type="Texture" id=3]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/rock1.png" type="Texture" id=4]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/warning.png" type="Texture" id=5]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/rock2.png" type="Texture" id=6]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/rainbow.png" type="Texture" id=7]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/spear.png" type="Texture" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 132.25, 47.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 53.5, 42.5 )
+
+[node name="CatQueenTheMemeLord" type="Node2D"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Background" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Actor1" type="Sprite" parent="."]
+position = Vector2( 1199, 397 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Actor1"]
+position = Vector2( 120, 63 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Actor1"]
+position = Vector2( 202, -28 )
+shape = SubResource( 2 )
+
+[node name="Rock1" type="Sprite" parent="."]
+position = Vector2( 247, 344 )
+texture = ExtResource( 4 )
+
+[node name="Rock2" type="Sprite" parent="."]
+position = Vector2( 603, 254 )
+texture = ExtResource( 6 )
+
+[node name="Rock3" type="Sprite" parent="."]
+position = Vector2( 725, 511 )
+texture = ExtResource( 3 )
+
+[node name="Rock4" type="Sprite" parent="."]
+position = Vector2( -6, 215 )
+texture = ExtResource( 3 )
+
+[node name="Rock5" type="Sprite" parent="."]
+position = Vector2( 207, 633 )
+texture = ExtResource( 4 )
+
+[node name="Rock6" type="Sprite" parent="."]
+position = Vector2( 14, 455 )
+texture = ExtResource( 3 )
+
+[node name="Spear" type="Sprite" parent="."]
+position = Vector2( 265, -843 )
+rotation = 1.57079
+texture = ExtResource( 8 )
+
+[node name="Warning" type="Sprite" parent="Spear"]
+position = Vector2( 897, 6.00198 )
+rotation = 4.71239
+texture = ExtResource( 5 )
+
+[node name="Spear2" type="Sprite" parent="."]
+position = Vector2( 757, 796 )
+texture = ExtResource( 8 )
+
+[node name="Rainbow" type="Sprite" parent="."]
+position = Vector2( 839, 812 )
+scale = Vector2( 1.56796, 1.56796 )
+texture = ExtResource( 7 )
+
+[node name="Rainbow" type="Sprite" parent="Rainbow"]
+position = Vector2( -1.91339, -440.062 )
+scale = Vector2( 1, 2.12901 )
+texture = ExtResource( 7 )
+
+[node name="Rainbow2" type="Sprite" parent="Rainbow"]
+position = Vector2( -245.542, -385.214 )
+scale = Vector2( 1, 2.12901 )
+texture = ExtResource( 7 )
+
+[node name="Rainbow3" type="Sprite" parent="Rainbow"]
+position = Vector2( -245.542, 160.718 )
+scale = Vector2( 1, 2.12901 )
+texture = ExtResource( 7 )
