@@ -28,7 +28,7 @@ func _ready() -> void:
 	camera.smoothing_enabled = true
 	broom.set_player($Player)
 	_fade_out_dark_bg()
-	
+
 
 func _fade_out_dark_bg() -> void:
 	$Dark/Background.visible = true
@@ -50,6 +50,9 @@ func garbage_cleared() -> void:
 
 
 func _show_rofi() -> void:
+	if rofi_initialized:
+		return
+	rofi_initialized = true	
 	var rofi = Rofi.instance()
 	player.get_parent().call_deferred("add_child", rofi)
 	yield(rofi, "ready")

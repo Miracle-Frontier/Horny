@@ -50,5 +50,5 @@ texture = ExtResource( 3 )
 [node name="Sprite2" type="Sprite" parent="."]
 
 [node name="Mouse" parent="." instance=ExtResource( 5 )]
-position = Vector2( -225.455, -227.692 )
-scale = Vector2( 0.715, 0.605 )
+position = Vector2( -275.455, -140.769 )
+scale = Vector2( 0.848052, 0.625962 )
