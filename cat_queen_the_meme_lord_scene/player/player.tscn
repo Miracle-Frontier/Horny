@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/actor1.png" type="Texture" id=1]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/player/player.gd" type="Script" id=2]
@@ -62,6 +62,56 @@ extents = Vector2( 133.5, 47.5 )
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 55.5, 44 )
 
+[sub_resource type="GDScript" id=8]
+script/source = "extends Node
+
+const AMPLITUDE_TIME:float = 0.1
+const MODULATE_INIT_VALUE = 255.0
+
+var action:bool = false
+var timer:float = 0
+var modulate_value = MODULATE_INIT_VALUE
+var amplitude_timer:float = 0.0
+
+onready var parent:Node2D = get_parent().get_node(\"Sprite\") as Node2D
+
+var save_r:float
+var save_g:float
+var save_b:float
+var save_a:float
+
+
+func flash(time:float) -> void:
+	if not action:
+		save_r = parent.modulate.r
+		save_g = parent.modulate.g
+		save_b = parent.modulate.b
+		save_a = parent.modulate.a
+	timer = time
+	action = true
+
+
+func _process(delta: float) -> void:
+	if action:
+		timer -= delta
+		if timer <= 0:
+			action = false
+			parent.modulate.r = save_r
+			parent.modulate.g = save_g
+			parent.modulate.b = save_b
+			parent.modulate.a = save_a
+		else:
+			_flash(delta)
+
+
+func _flash(delta: float) -> void:
+	amplitude_timer += delta
+	if amplitude_timer >= AMPLITUDE_TIME:
+		amplitude_timer = 0
+		modulate_value *= -1
+		parent.modulate.r = modulate_value
+"
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 2 )
@@ -94,6 +144,9 @@ shape = SubResource( 6 )
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area"]
 position = Vector2( 80.5, -86 )
 shape = SubResource( 7 )
+
+[node name="Flasher" type="Node" parent="."]
+script = SubResource( 8 )
 
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]

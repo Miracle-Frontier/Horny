@@ -20,8 +20,10 @@ func _ready() -> void:
 	
 	
 func _test() -> void:
-	create_asteroid(600, 200, Vector2(2, 2))
-	create_flappy_bird(500, 600)
+	create_asteroid(600, 200, Vector2(2, 2), false)
+	create_asteroid(600, 200, Vector2(2, 2), true)
+	create_flappy_bird(500, 600, false)
+	create_flappy_bird(500, 600, true)
 	create_spear(Side.RIGHT, 500)
 	shake_screen()
 
@@ -29,13 +31,14 @@ func _test() -> void:
 func _process(delta):
 	#print(get_viewport().get_mouse_position().y
 	pass
-	
-func create_asteroid(y_position:float, speed:float, scale:Vector2) -> void:
-	asteroid_spawner.create_rock(y_position, speed, scale)
 
 
-func create_flappy_bird(up_y: float, low_y: float) -> void:
-	gate_spawner.create_gate(up_y, low_y)
+func create_asteroid(y_position:float, speed:float, scale:Vector2, inverse:bool) -> void:
+	asteroid_spawner.create_rock(y_position, speed, scale, inverse)
+
+
+func create_flappy_bird(up_y: float, low_y: float, inverse:bool) -> void:
+	gate_spawner.create_gate(up_y, low_y, inverse)
 
 
 func create_spear(var side:int, position:float) -> void:

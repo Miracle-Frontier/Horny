@@ -203,6 +203,7 @@ dialogic_default_action={
 2d_physics/layer_3="garbage"
 2d_physics/layer_4="rofi"
 2d_physics/layer_5="timer_reset"
+2d_physics/layer_6="damagable by bullet"
 
 [mono]
 

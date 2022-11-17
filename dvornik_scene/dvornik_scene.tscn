@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://dvornik_scene/cleaner/garbage/scrub.tscn" type="PackedScene" id=1]
 [ext_resource path="res://dvornik_scene/assets/city_vibe.mp3" type="AudioStream" id=2]
@@ -126,6 +126,51 @@ extents = Vector2( 44.875, 408.5 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 500000, 10 )
 
+[sub_resource type="GDScript" id=7]
+script/source = "extends Node2D
+
+var count_garbage_in_screen = 0
+var need_remove:bool = false
+
+func _ready() -> void:
+	connet_to_garbages(get_children())
+	
+
+func connet_to_garbages(garbages:Array) -> void:
+	for garbage in garbages:
+		connet_to_garbage(garbage)
+
+
+func connet_to_garbage(garbage:Node) -> void:
+	garbage.connect(\"garbale_put_in_screen\", self, \"_increment\")
+	garbage.connect(\"garbage_out_of_screen\", self, \"_decrement\")
+	
+
+func _increment() -> void:
+	count_garbage_in_screen += 1
+	
+	
+func _decrement() -> void:
+	count_garbage_in_screen -= 1
+	if count_garbage_in_screen < 0:
+		print(\"Error! count_garbage_in_screen < 0\")	
+
+
+func _clear_all_garbage() -> void:
+	var garbages:Array = get_children()
+	for garbage in garbages:
+		garbage.queue_free()
+
+
+func is_garbage_out_screen() -> bool:
+	return count_garbage_in_screen == 0
+
+
+func _process(delta: float) -> void:
+	if need_remove and is_garbage_out_screen():
+		_clear_all_garbage()
+"
+
 [node name="DvornikScene" type="Node2D"]
 z_index = -1
 script = ExtResource( 7 )
@@ -242,129 +287,12 @@ current = true
 smoothing_enabled = true
 smoothing_speed = 2.0
 
-[node name="Garbage2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 5739, 754 )
-
-[node name="Garbage12" parent="." instance=ExtResource( 3 )]
-position = Vector2( 7123, 744 )
-
-[node name="Garbage18" parent="." instance=ExtResource( 3 )]
-position = Vector2( 9881, 737 )
-
-[node name="Garbage19" parent="." instance=ExtResource( 3 )]
-position = Vector2( 12441, 774 )
-
-[node name="Garbage21" parent="." instance=ExtResource( 3 )]
-position = Vector2( 14419, 774 )
-
-[node name="Garbage22" parent="." instance=ExtResource( 3 )]
-position = Vector2( 14419, 774 )
-
-[node name="Garbage39" parent="." instance=ExtResource( 3 )]
-position = Vector2( 17626, 780 )
-
-[node name="Garbage40" parent="." instance=ExtResource( 3 )]
-position = Vector2( 21379, 786 )
-
-[node name="Garbage41" parent="." instance=ExtResource( 3 )]
-position = Vector2( 24217, 849 )
-
-[node name="Garbage42" parent="." instance=ExtResource( 3 )]
-position = Vector2( 27049, 773 )
-
-[node name="Garbage43" parent="." instance=ExtResource( 3 )]
-position = Vector2( 32694, 779 )
-
-[node name="Garbage3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1371, 803 )
-
-[node name="Garbage7" parent="." instance=ExtResource( 3 )]
-position = Vector2( 3247, 755 )
-
-[node name="Garbage11" parent="." instance=ExtResource( 3 )]
-position = Vector2( 3247, 755 )
-
-[node name="Garbage8" parent="." instance=ExtResource( 3 )]
-position = Vector2( 3855, 785 )
-
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2( 253, 812 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2( 499748, 8 )
 shape = SubResource( 3 )
-
-[node name="Garbage5" parent="." instance=ExtResource( 1 )]
-position = Vector2( 2279, 775 )
-
-[node name="Garbage9" parent="." instance=ExtResource( 1 )]
-position = Vector2( 897, 752 )
-
-[node name="Garbage10" parent="." instance=ExtResource( 1 )]
-position = Vector2( 4718, 779 )
-
-[node name="Garbage13" parent="." instance=ExtResource( 1 )]
-position = Vector2( 8629, 769 )
-
-[node name="Garbage15" parent="." instance=ExtResource( 1 )]
-position = Vector2( 10897, 769 )
-
-[node name="Garbage16" parent="." instance=ExtResource( 1 )]
-position = Vector2( 11754, 724 )
-
-[node name="Garbage20" parent="." instance=ExtResource( 1 )]
-position = Vector2( 14895, 775 )
-
-[node name="Garbage24" parent="." instance=ExtResource( 1 )]
-position = Vector2( 17023, 769 )
-
-[node name="Garbage25" parent="." instance=ExtResource( 1 )]
-position = Vector2( 19558, 757 )
-
-[node name="Garbage26" parent="." instance=ExtResource( 1 )]
-position = Vector2( 22809, 757 )
-
-[node name="Garbage27" parent="." instance=ExtResource( 1 )]
-position = Vector2( 25647, 757 )
-
-[node name="Garbage28" parent="." instance=ExtResource( 1 )]
-position = Vector2( 28413, 793 )
-
-[node name="Garbage29" parent="." instance=ExtResource( 1 )]
-position = Vector2( 31278, 739 )
-
-[node name="Garbage30" parent="." instance=ExtResource( 1 )]
-position = Vector2( 34762, 766 )
-
-[node name="Garbage31" parent="." instance=ExtResource( 1 )]
-position = Vector2( 37321, 748 )
-
-[node name="Garbage32" parent="." instance=ExtResource( 1 )]
-position = Vector2( 40347, 766 )
-
-[node name="Garbage33" parent="." instance=ExtResource( 1 )]
-position = Vector2( 43391, 739 )
-
-[node name="Garbage34" parent="." instance=ExtResource( 1 )]
-position = Vector2( 46832, 773 )
-
-[node name="Garbage35" parent="." instance=ExtResource( 1 )]
-position = Vector2( 50479, 776 )
-
-[node name="Garbage36" parent="." instance=ExtResource( 1 )]
-position = Vector2( 50479, 776 )
-
-[node name="Garbage37" parent="." instance=ExtResource( 1 )]
-position = Vector2( 53794, 770 )
-
-[node name="Garbage38" parent="." instance=ExtResource( 1 )]
-position = Vector2( 53794, 770 )
-
-[node name="Garbage23" parent="." instance=ExtResource( 1 )]
-position = Vector2( 13371, 748 )
-
-[node name="Garbage17" parent="." instance=ExtResource( 1 )]
-position = Vector2( 9198, 764 )
 
 [node name="BroomSweep" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
@@ -389,3 +317,123 @@ position = Vector2( 2836, 722 )
 [node name="Portal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 18 )
 volume_db = 1.0
+
+[node name="GarbageContainer" type="Node2D" parent="."]
+script = SubResource( 7 )
+
+[node name="Garbage5" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 2279, 775 )
+
+[node name="Garbage9" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 897, 752 )
+
+[node name="Garbage10" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 4718, 779 )
+
+[node name="Garbage13" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 8629, 769 )
+
+[node name="Garbage15" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 10897, 769 )
+
+[node name="Garbage16" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 11754, 724 )
+
+[node name="Garbage20" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 14895, 775 )
+
+[node name="Garbage24" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 17023, 769 )
+
+[node name="Garbage25" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 19558, 757 )
+
+[node name="Garbage26" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 22809, 757 )
+
+[node name="Garbage27" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 25647, 757 )
+
+[node name="Garbage28" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 28413, 793 )
+
+[node name="Garbage29" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 31278, 739 )
+
+[node name="Garbage30" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 34762, 766 )
+
+[node name="Garbage31" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 37321, 748 )
+
+[node name="Garbage32" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 40347, 766 )
+
+[node name="Garbage33" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 43391, 739 )
+
+[node name="Garbage34" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 46832, 773 )
+
+[node name="Garbage35" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 50479, 776 )
+
+[node name="Garbage36" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 50479, 776 )
+
+[node name="Garbage37" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 53794, 770 )
+
+[node name="Garbage38" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 53794, 770 )
+
+[node name="Garbage23" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 13371, 748 )
+
+[node name="Garbage17" parent="GarbageContainer" instance=ExtResource( 1 )]
+position = Vector2( 9198, 764 )
+
+[node name="Garbage2" parent="GarbageContainer" instance=ExtResource( 3 )]
+position = Vector2( 5739, 754 )
+
+[node name="Garbage12" parent="GarbageContainer" instance=ExtResource( 3 )]
+position = Vector2( 7123, 744 )
+
+[node name="Garbage18" parent="GarbageContainer" instance=ExtResource( 3 )]
+position = Vector2( 9881, 737 )
+
+[node name="Garbage19" parent="GarbageContainer" instance=ExtResource( 3 )]
+position = Vector2( 12441, 774 )
+
+[node name="Garbage21" parent="GarbageContainer" instance=ExtResource( 3 )]
+position = Vector2( 14419, 774 )
+
+[node name="Garbage22" parent="GarbageContainer" instance=ExtResource( 3 )]
+position = Vector2( 14419, 774 )
+
+[node name="Garbage39" parent="GarbageContainer" instance=ExtResource( 3 )]
+position = Vector2( 17626, 780 )
+
+[node name="Garbage40" parent="GarbageContainer" instance=ExtResource( 3 )]
+position = Vector2( 21379, 786 )
+
+[node name="Garbage41" parent="GarbageContainer" instance=ExtResource( 3 )]
+position = Vector2( 24217, 849 )
+
+[node name="Garbage42" parent="GarbageContainer" instance=ExtResource( 3 )]
+position = Vector2( 27049, 773 )
+
+[node name="Garbage43" parent="GarbageContainer" instance=ExtResource( 3 )]
+position = Vector2( 32694, 779 )
+
+[node name="Garbage3" parent="GarbageContainer" instance=ExtResource( 3 )]
+position = Vector2( 1371, 803 )
+
+[node name="Garbage7" parent="GarbageContainer" instance=ExtResource( 3 )]
+position = Vector2( 3247, 755 )
+
+[node name="Garbage11" parent="GarbageContainer" instance=ExtResource( 3 )]
+position = Vector2( 3247, 755 )
+
+[node name="Garbage8" parent="GarbageContainer" instance=ExtResource( 3 )]
+position = Vector2( 3855, 785 )

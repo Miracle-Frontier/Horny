@@ -19,9 +19,11 @@ var loh_showd:bool = false
 var xxx_showd:bool = false
 var rofi_initialized: bool = false
 
+
 onready var player:KinematicBody2D = $Player
 onready var broom:Node2D = $Broom
 onready var camera:Camera2D = $Camera2D
+onready var garbage_container = $GarbageContainer
 
 var shader_animation
 var input_is_active = true
@@ -31,6 +33,7 @@ func _ready() -> void:
 	camera.smoothing_enabled = false
 	camera.global_position.x = clamp(player.global_position.x, MIN_DISTANCE, MAX_DISTANCE)
 	_update_score()
+	_connet_garbage()
 	yield(get_tree(),"idle_frame")
 	camera.smoothing_enabled = true
 	broom.set_player($Player)
@@ -44,6 +47,12 @@ func _ready() -> void:
 	canvas.add_child(shader_animation)
 	shader_animation.get_node("AnimationPlayer").connect("next_scene",self,"next_scene")
 	
+
+func _connet_garbage() -> void:
+	var garbages:Array = $GarbageContainer.get_children()
+	for garbage in garbages:
+		garbage.connect("cleared", self, "garbage_cleared")
+
 
 func _fade_out_dark_bg() -> void:
 	$Dark/Background.visible = true
@@ -60,7 +69,7 @@ func garbage_cleared() -> void:
 	_score += 1
 	_update_score()
 	if _score >= MAX_SCORE:
-		_clear_all_garbage()
+		$GarbageContainer.need_remove = true
 		_show_rofi()
 
 
@@ -107,14 +116,6 @@ func next_scene(): # TODO : ВЫЗВАТЬ new ShaderMaterial, иначе все
 	$UI.queue_free()
 	yield(get_tree().create_timer(2), "timeout")
 	queue_free()
-
-func _clear_all_garbage() -> void:
-	while true:
-		var garbage:Node = find_node("Garbage*", false, false)
-		if garbage == null:
-			break
-		garbage.name = "Delete"
-		garbage.queue_free()
 
 
 func _update_score() -> void:
