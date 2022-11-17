@@ -1,7 +1,7 @@
 extends Node2D
 
 const LEFT_MOUSE:int = 1;
-const MAX_SCORE = 8
+const MAX_SCORE = 0
 const MIN_DISTANCE = 800
 const MAX_DISTANCE = 500000
 const FADEOUT_TIME = 8.0
@@ -30,6 +30,7 @@ func _ready() -> void:
 	
 
 func _fade_out_dark_bg() -> void:
+	$Dark/Background.visible = true
 	var current_tween = create_tween()
 	current_tween.set_trans(Tween.TRANS_CUBIC)
 	current_tween.tween_property($Dark/Background, "modulate:a", 0.0, FADEOUT_TIME)
@@ -103,4 +104,8 @@ func get_position_for_lox_xxx_sprite() -> Vector2:
 
 
 func _process(_delta: float) -> void:
+	var mouse_pos = get_global_mouse_position()
+	
 	camera.global_position.x = clamp(player.global_position.x, MIN_DISTANCE, MAX_DISTANCE)
+	#camera.offset_h = (mouse_pos.x - global_position.x) / (1600 / 1.5)
+	#camera.offset_h = (mouse_pos.x - global_position.x) / (900 / 1.5)

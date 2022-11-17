@@ -75,7 +75,7 @@
 			"character": "",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Around 151 years ago a big rock crashed into home planet marking the beginning of Era 4"
+			"text": "Around 141 years ago a big rock crashed into home planet marking the beginning of Era 4"
 		},
 		{
 			"emit_signal": "1RockFall",
@@ -123,7 +123,7 @@
 			"character": "",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "This could've been used to [color=#fff117]UPGRADE[/color] that organic form."
+			"text": "This could've been used to [color=#fff117]UPGRADE[/color] that form"
 		},
 		{
 			"emit_signal": "4LabFine",
@@ -196,7 +196,7 @@
 		},
 		{
 			"event_id": "dialogic_024",
-			"set_theme": "theme-1668478505.cfg"
+			"set_theme": "theme-1668664175.cfg"
 		},
 		{
 			"character": "",
@@ -217,14 +217,14 @@
 			"set_theme": "theme-1668477654.cfg"
 		},
 		{
+			"emit_signal": "7City",
+			"event_id": "dialogic_040"
+		},
+		{
 			"character": "",
 			"event_id": "dialogic_001",
 			"portrait": "",
 			"text": "Already? It's time for my shift"
-		},
-		{
-			"emit_signal": "7City",
-			"event_id": "dialogic_040"
 		},
 		{
 			"character": "",

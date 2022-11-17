@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://dvornik_scene/cleaner/garbage/scrub.tscn" type="PackedScene" id=1]
 [ext_resource path="res://dvornik_scene/assets/city_vibe.mp3" type="AudioStream" id=2]
@@ -14,6 +14,94 @@
 [ext_resource path="res://start_cutscene/assets/background.png" type="Texture" id=12]
 [ext_resource path="res://dvornik_scene/assets/loh.png" type="Texture" id=13]
 [ext_resource path="res://dvornik_scene/assets/xxx.png" type="Texture" id=14]
+[ext_resource path="res://dvornik_scene/shaders/shockwave.shader" type="Shader" id=15]
+[ext_resource path="res://start_cutscene/assets/blank.png" type="Texture" id=16]
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 15 )
+shader_param/center = Vector2( 0.5, 0.5 )
+shader_param/force = 0.0
+shader_param/size = 0.0
+shader_param/thickness = 0.0
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:material:shader_param/force")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:material:shader_param/thickness")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "ShockWave"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( -0.5, -2 ),
+"update": 0,
+"values": [ 0.0, 1.127 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:material:shader_param/force")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( -0.5, -2 ),
+"update": 0,
+"values": [ 0.0, 0.361 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:material:shader_param/thickness")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( -0.5, -2 ),
+"update": 0,
+"values": [ 0.0, 1.065 ]
+}
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 44.875, 408.5 )
@@ -23,19 +111,42 @@ extents = Vector2( 500000, 10 )
 
 [node name="DvornikScene" type="Node2D"]
 script = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Dark" type="CanvasLayer" parent="."]
 layer = 2
 
 [node name="Background" type="Sprite" parent="Dark"]
+visible = false
 z_index = 1000
 texture = ExtResource( 12 )
 centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ShaderBlank" type="Sprite" parent="Dark"]
+material = SubResource( 4 )
+scale = Vector2( 160, 90 )
+texture = ExtResource( 16 )
+centered = false
+region_rect = Rect2( 1600, 900, 0, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Dark/ShaderBlank"]
+autoplay = "ShockWave"
+anims/RESET = SubResource( 6 )
+anims/ShockWave = SubResource( 5 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2( 1600, 0 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="Bg" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 texture = ExtResource( 6 )
@@ -81,7 +192,7 @@ position = Vector2( -272, 272 )
 z_index = 5
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
-position = Vector2( 656, 692 )
+position = Vector2( 297, 785 )
 z_index = 3
 
 [node name="EndCredits" type="Label" parent="."]
