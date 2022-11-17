@@ -1,12 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://cat_queen_the_meme_lord_scene/player/player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://cat_queen_the_meme_lord_scene/spear/spear.tscn" type="PackedScene" id=2]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/bullet/smoketrail.tscn" type="PackedScene" id=1]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Spear" parent="." instance=ExtResource( 2 )]
-position = Vector2( 569, 519 )
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1092, 685 )
+[node name="Smoketrail" parent="." instance=ExtResource( 1 )]
+position = Vector2( 380, 231 )
+points = PoolVector2Array( 0, 0 )
+limit_life_time = true
