@@ -23,6 +23,8 @@ void fragment()
 	float donut_mask = smoothstep(size-thickness-0.1,size-thickness,length(scaledUV - center))*mask; 
 	// Маска применяет distortion только в своей зоне (Потому что любое число *0 = 0, очень просто)
 	vec2 disp = normalize(scaledUV - center) * force * donut_mask; // Вектор, смотрящий из центра в Сторону UV
+	vec4 pixel_color = texture(SCREEN_TEXTURE, SCREEN_UV-disp);
+	vec4 modified_color = 
 	COLOR = texture(SCREEN_TEXTURE, SCREEN_UV - disp); // Прибавляем disp к UV (мы прибавляем искажение центра)
 	//COLOR.rgb = vec3(donut_mask);
 

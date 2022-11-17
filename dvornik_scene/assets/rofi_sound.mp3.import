@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/rofi_sound.mp3-b20b746fc36a9a896be71b058af7638f.mp3str"
+
+[deps]
+
+source_file="res://dvornik_scene/assets/rofi_sound.mp3"
+dest_files=[ "res://.import/rofi_sound.mp3-b20b746fc36a9a896be71b058af7638f.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

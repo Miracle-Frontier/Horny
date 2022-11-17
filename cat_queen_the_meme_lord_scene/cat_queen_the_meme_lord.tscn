@@ -10,16 +10,6 @@
 
 [node name="CatQueenTheMemeLord" type="Node2D"]
 script = ExtResource( 10 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Background" type="Sprite" parent="."]
-texture = ExtResource( 1 )
-centered = false
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Spear" type="Sprite" parent="."]
 position = Vector2( 265, -843 )
@@ -32,10 +22,27 @@ rotation = 4.71239
 texture = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 12 )]
-position = Vector2( 100, -100 )
+position = Vector2( 103, 451 )
 
 [node name="GateSpawner" parent="." instance=ExtResource( 11 )]
 position = Vector2( 1742, -4 )
 
 [node name="RockSpawn" parent="." instance=ExtResource( 9 )]
 position = Vector2( 1654, -6 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 1600, 0 )
+
+[node name="Background" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 1 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 800, 450 )
+smoothing_enabled = true
+smoothing_speed = 2.0
