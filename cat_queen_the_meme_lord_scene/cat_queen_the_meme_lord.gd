@@ -29,7 +29,8 @@ func _test() -> void:
 func _process(delta):
 	#print(get_viewport().get_mouse_position().y
 	pass
-	
+
+
 func create_asteroid(y_position:float, speed:float, scale:Vector2) -> void:
 	asteroid_spawner.create_rock(y_position, speed, scale)
 

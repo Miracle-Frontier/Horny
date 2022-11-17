@@ -19,7 +19,7 @@ var direction : Vector2
 var contact:bool = false
 var time_between_emit_signal:float = 0
 
-onready var flasher:Node = $Flash
+onready var flasher:Node = $Flasher
 onready var invulnerability:bool = false
 onready var invulnerability_timer:float = INVULNERABILITY_TIME
 
