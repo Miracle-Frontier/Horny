@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://dvornik_scene/cleaner/garbage/scrub.tscn" type="PackedScene" id=1]
 [ext_resource path="res://dvornik_scene/assets/city_vibe.mp3" type="AudioStream" id=2]
@@ -7,7 +7,7 @@
 [ext_resource path="res://dvornik_scene/cleaner/player/player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://dvornik_scene/assets/background.png" type="Texture" id=6]
 [ext_resource path="res://dvornik_scene/dvornik_scene.gd" type="Script" id=7]
-[ext_resource path="res://dvornik_scene/assets/ui/gray.png" type="Texture" id=8]
+[ext_resource path="res://dvornik_scene/assets/ui/ui_150.png" type="Texture" id=8]
 [ext_resource path="res://dvornik_scene/assets/ui/white.png" type="Texture" id=9]
 [ext_resource path="res://dvornik_scene/assets/walking_fast.mp3" type="AudioStream" id=10]
 [ext_resource path="res://dvornik_scene/assets/broom_sweep.mp3" type="AudioStream" id=11]
@@ -16,6 +16,9 @@
 [ext_resource path="res://dvornik_scene/assets/xxx.png" type="Texture" id=14]
 [ext_resource path="res://dvornik_scene/shaders/shockwave.shader" type="Shader" id=15]
 [ext_resource path="res://start_cutscene/assets/blank.png" type="Texture" id=16]
+[ext_resource path="res://dvornik_scene/AnimationPlayer.gd" type="Script" id=17]
+[ext_resource path="res://dvornik_scene/assets/portal.wav" type="AudioStream" id=18]
+[ext_resource path="res://dvornik_scene/assets/rofi_sound.mp3" type="AudioStream" id=19]
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 15 )
@@ -24,7 +27,7 @@ shader_param/force = 0.0
 shader_param/size = 0.0
 shader_param/thickness = 0.0
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/size")
@@ -63,9 +66,9 @@ tracks/2/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 resource_name = "ShockWave"
-loop = true
+length = 10.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/size")
 tracks/0/interp = 1
@@ -73,10 +76,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.7 ),
+"times": PoolRealArray( 0.1, 1.7 ),
 "transitions": PoolRealArray( -0.5, -2 ),
 "update": 0,
-"values": [ 0.0, 1.127 ]
+"values": [ 0.0, 1.098 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:material:shader_param/force")
@@ -85,7 +88,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.7 ),
+"times": PoolRealArray( 0.1, 1.7 ),
 "transitions": PoolRealArray( -0.5, -2 ),
 "update": 0,
 "values": [ 0.0, 0.361 ]
@@ -97,10 +100,24 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.7 ),
-"transitions": PoolRealArray( -0.5, -2 ),
+"times": PoolRealArray( 0.1, 1.7, 4.3 ),
+"transitions": PoolRealArray( -0.5, -2, -0.5 ),
 "update": 0,
-"values": [ 0.0, 1.065 ]
+"values": [ 0.0, 1.065, 0.0 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("AnimationPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "switch_scene"
+} ]
 }
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -110,13 +127,14 @@ extents = Vector2( 44.875, 408.5 )
 extents = Vector2( 500000, 10 )
 
 [node name="DvornikScene" type="Node2D"]
+z_index = -1
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Dark" type="CanvasLayer" parent="."]
-layer = 2
+layer = 3
 
 [node name="Background" type="Sprite" parent="Dark"]
 visible = false
@@ -136,9 +154,9 @@ centered = false
 region_rect = Rect2( 1600, 900, 0, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Dark/ShaderBlank"]
-autoplay = "ShockWave"
-anims/RESET = SubResource( 6 )
-anims/ShockWave = SubResource( 5 )
+anims/RESET = SubResource( 5 )
+anims/ShockWave = SubResource( 6 )
+script = ExtResource( 17 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -212,6 +230,11 @@ margin_bottom = 302.0
 rect_scale = Vector2( 2, 2 )
 text = "You were walking for so long, that you reached another street.
 There is no trash here. Good cleaners work here. "
+
+[node name="RofiSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
+volume_db = 1.0
+pitch_scale = 0.5
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 800, 450 )
@@ -362,3 +385,7 @@ autoplay = true
 
 [node name="RofiHeightPosition" type="Position2D" parent="."]
 position = Vector2( 2836, 722 )
+
+[node name="Portal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+volume_db = 1.0

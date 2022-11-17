@@ -35,6 +35,8 @@ func _show_animation() -> void:
 
 
 func _show_smoke() -> void:
+	if not player.show_particles: return
+	
 	var smoke:Particles2D = SmokeEffect.instance()
 	get_tree().current_scene.add_child(smoke)
 	var smoke_posotion:Vector2 = global_position

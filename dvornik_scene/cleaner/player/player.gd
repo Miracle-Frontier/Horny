@@ -8,14 +8,17 @@ const DIRECTION_LEFT:float = -1.0
 const DIRECTION_RIGHT:float = 1.0
 var SmokeEffect = preload("res://dvornik_scene/cleaner/smoke/smoke.tscn")
 
-export var speed:float = 900#200
+export var speed:float = 800#200
 
 var _current_turn = TurnSide.NONE
 var _smoke_ready:bool = true
 
+var show_particles:bool = true
+
 onready var animation:AnimationPlayer = $AnimationPlayer
 onready var clear_area:Area2D = $ClearArea
 onready var walking_sound_player = get_parent().get_node("Walking")
+onready var dvornik:DvornikScene = get_parent()
 
 var walking_smoke_material
 
@@ -39,6 +42,11 @@ func get_turn_side() -> int:
 	
 func _physics_process(_delta: float) -> void:
 	var direction = Vector2(0, GRAVITY)
+	
+	if dvornik.speaking_to_rofi:
+		_update_animation(direction.x != 0)
+		return
+	
 	if Input.is_action_pressed("ui_left"):
 		direction.x = DIRECTION_LEFT
 		_turn_side(TurnSide.LEFT)
@@ -47,15 +55,17 @@ func _physics_process(_delta: float) -> void:
 		_turn_side(TurnSide.RIGHT)
 		
 	direction *= speed	
+	
 	move_and_slide(direction)
 	_update_animation(direction.x != 0)
 
 
 func _update_animation(isWalk: bool) -> void:
 	if isWalk:
-		$WalkingAnimation.play("Walking")
-		walking_sound_player.stream_paused = false;
-		_smoke()
+		if show_particles:
+			$WalkingAnimation.play("Walking")
+			walking_sound_player.stream_paused = false;
+			_smoke()
 	else:
 		$WalkingAnimation.play("Idle")
 		walking_sound_player.stream_paused = true;
@@ -84,7 +94,6 @@ func _smoke() -> void:
 	#yield(smoke, "tree_exiting")
 	yield(get_tree().create_timer(rand_range(0, 0.1)), "timeout")
 	_smoke_ready = true
-
 
 func _turn_side(side: int) -> void:
 	if _current_turn == side:

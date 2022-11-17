@@ -18,7 +18,7 @@ func set_gate_size(up_y: float, low_y: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	position.x -= speed * delta
-	pass
+	pass 
 
 
 func _on_VisibilityNotifier2D_screen_exited() -> void:
