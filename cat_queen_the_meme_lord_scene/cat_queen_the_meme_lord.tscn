@@ -29,7 +29,7 @@ script = ExtResource( 10 )
 
 [node name="Bg" type="Node2D" parent="."]
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Bg"]
+[node name="Stars" type="CPUParticles2D" parent="Bg"]
 position = Vector2( 1633, 449 )
 amount = 100
 lifetime = 8.0
