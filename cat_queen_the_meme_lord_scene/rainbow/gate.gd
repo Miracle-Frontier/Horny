@@ -9,10 +9,10 @@ onready var low_sprite_collision:CollisionShape2D = $Walls/LowerWallCollision
 
 
 func set_gate_size(up_y: float, low_y: float) -> void:
-	up_sprite.global_position.y -= up_y
-	up_sprite_collision.global_position.y -= up_y
+	up_sprite.global_position.y = up_y
+	up_sprite_collision.global_position.y += up_y
 	
-	low_sprite.global_position.y += low_y
+	low_sprite.global_position.y = low_y
 	low_sprite_collision.global_position.y += low_y
 
 

@@ -8,8 +8,8 @@ const rocks:Array = [Rock1, Rock2, Rock3]
 
 func create_rock(y_position:float, speed:float, scale:Vector2) -> void:
 	var rock = rocks[randi() % rocks.size()].instance()
-	get_tree().current_scene.add_child(rock)
+	get_parent().add_child(rock)
 	rock.speed = speed
-	rock.global_position = self.position
+	rock.global_position = self.global_position
 	rock.global_position.y = y_position
 	rock.scale = scale

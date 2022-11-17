@@ -146,6 +146,7 @@ __meta__ = {
 }
 
 [node name="ShaderBlank" type="Sprite" parent="Dark"]
+visible = false
 material = SubResource( 4 )
 scale = Vector2( 160, 90 )
 texture = ExtResource( 16 )

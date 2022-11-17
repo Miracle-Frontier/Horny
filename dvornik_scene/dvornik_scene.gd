@@ -6,8 +6,10 @@ const LEFT_MOUSE:int = 1;
 const MAX_SCORE = 1
 const MIN_DISTANCE = 800
 const MAX_DISTANCE = 500000
+
 const FADEOUT_TIME = 8.0
 const _rofi = preload("res://dvornik_scene/cleaner/rofi/rofi.tscn")
+
 
 var rofi: Rofi
 export var garbage_count:int = 2
@@ -15,6 +17,7 @@ var _score:int = 0
 var _max_player_x:float = 0.0
 var loh_showd:bool = false
 var xxx_showd:bool = false
+var rofi_initialized: bool = false
 
 onready var player:KinematicBody2D = $Player
 onready var broom:Node2D = $Broom
@@ -32,6 +35,7 @@ func _ready() -> void:
 	camera.smoothing_enabled = true
 	broom.set_player($Player)
 	_fade_out_dark_bg()
+
 	shader_animation = $Dark/ShaderBlank
 	shader_animation.get_parent().remove_child(shader_animation)
 	var canvas = CanvasLayer.new()
@@ -40,6 +44,7 @@ func _ready() -> void:
 	canvas.add_child(shader_animation)
 	shader_animation.get_node("AnimationPlayer").connect("next_scene",self,"next_scene")
 	
+
 func _fade_out_dark_bg() -> void:
 	$Dark/Background.visible = true
 	var current_tween = create_tween()
@@ -60,7 +65,11 @@ func garbage_cleared() -> void:
 
 
 func _show_rofi() -> void:
+	if rofi_initialized:
+		return
+	rofi_initialized = true	
 	rofi = _rofi.instance()
+
 	player.get_parent().call_deferred("add_child", rofi)
 	yield(rofi, "ready")
 	var rofi_position:Vector2 = player.global_position
@@ -166,7 +175,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.is_pressed() and event.get_button_index() == LEFT_MOUSE:
 			clear_garbage()
-			if randf() > 0.7:
+			if randf() > 0.8:
 				if randi() % 2 == 1:
 					_loh()
 				else:

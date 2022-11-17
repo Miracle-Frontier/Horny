@@ -1,12 +1,28 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/background.png" type="Texture" id=1]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/spear/spear_spawner.tscn" type="PackedScene" id=2]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/screen_shake/screen_shake.tscn" type="PackedScene" id=3]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/progress_bar/progress_bar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/warning.png" type="Texture" id=5]
+[ext_resource path="res://dvornik_scene/assets/ui/white.png" type="Texture" id=6]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/spear.png" type="Texture" id=8]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/rock/rock_spawn.tscn" type="PackedScene" id=9]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/cat_queen_the_meme_lord.gd" type="Script" id=10]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/rainbow/gate_spawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/player/player.tscn" type="PackedScene" id=12]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 602.5, 460 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 820.25, 37.75 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 444, 475.5 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 866, 100 )
 
 [node name="CatQueenTheMemeLord" type="Node2D"]
 script = ExtResource( 10 )
@@ -22,7 +38,8 @@ rotation = 4.71239
 texture = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 12 )]
-position = Vector2( 103, 451 )
+position = Vector2( 1235, 227 )
+
 
 [node name="GateSpawner" parent="." instance=ExtResource( 11 )]
 position = Vector2( 1742, -4 )
@@ -30,19 +47,38 @@ position = Vector2( 1742, -4 )
 [node name="RockSpawn" parent="." instance=ExtResource( 9 )]
 position = Vector2( 1654, -6 )
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2( 1600, 0 )
+[node name="SpearSpawner" parent="." instance=ExtResource( 2 )]
+position = Vector2( 817, 483 )
 
-[node name="Background" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-texture = ExtResource( 1 )
-centered = false
-__meta__ = {
-"_edit_lock_": true
-}
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -603.5, 450 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 805.75, 938.75 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 2045, 472.5 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 830, -100 )
+shape = SubResource( 4 )
+
+[node name="ScreenShake" parent="." instance=ExtResource( 3 )]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 800, 450 )
-smoothing_enabled = true
-smoothing_speed = 2.0
+position = Vector2( 802, 450 )
+current = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" parent="UI" instance=ExtResource( 4 )]
+texture_progress = ExtResource( 6 )
+tint_progress = Color( 1, 0, 0.854902, 1 )
+

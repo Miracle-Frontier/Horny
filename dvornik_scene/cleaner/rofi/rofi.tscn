@@ -95,3 +95,4 @@ texture = ExtResource( 9 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
 [connection signal="body_entered" from="AgressiveArea" to="." method="_on_AgressiveArea_body_entered"]
+
