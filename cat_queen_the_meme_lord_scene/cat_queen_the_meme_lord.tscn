@@ -1,6 +1,5 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/background.png" type="Texture" id=1]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/spear/spear_spawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/screen_shake/screen_shake.tscn" type="PackedScene" id=3]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/progress_bar/progress_bar.tscn" type="PackedScene" id=4]
@@ -38,15 +37,13 @@ rotation = 4.71239
 texture = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 12 )]
-position = Vector2( 1235, 227 )
-
+position = Vector2( 968, 528 )
 
 [node name="GateSpawner" parent="." instance=ExtResource( 11 )]
 position = Vector2( 1742, -4 )
 
 [node name="RockSpawn" parent="." instance=ExtResource( 9 )]
 position = Vector2( 1654, -6 )
-
 
 [node name="SpearSpawner" parent="." instance=ExtResource( 2 )]
 position = Vector2( 817, 483 )
@@ -81,4 +78,3 @@ current = true
 [node name="ProgressBar" parent="UI" instance=ExtResource( 4 )]
 texture_progress = ExtResource( 6 )
 tint_progress = Color( 1, 0, 0.854902, 1 )
-
