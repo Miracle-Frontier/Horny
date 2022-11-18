@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/start.png" type="Texture" id=1]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/spear/spear_spawner.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://cat_queen_the_meme_lord_scene/progress_bar/progress_bar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/warning.png" type="Texture" id=5]
 [ext_resource path="res://dvornik_scene/assets/ui/white.png" type="Texture" id=6]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/background.png" type="Texture" id=7]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/spear.png" type="Texture" id=8]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/rock/rock_spawn.tscn" type="PackedScene" id=9]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/cat_queen_the_meme_lord.gd" type="Script" id=10]
@@ -97,3 +98,15 @@ current = true
 [node name="ProgressBar" parent="UI" instance=ExtResource( 4 )]
 texture_progress = ExtResource( 6 )
 tint_progress = Color( 1, 0, 0.854902, 1 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Background" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 7 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
