@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/actor1.png" type="Texture" id=1]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/player/player.gd" type="Script" id=2]
@@ -112,6 +112,32 @@ func _flash(delta: float) -> void:
 		parent.modulate.r = modulate_value
 "
 
+[sub_resource type="GDScript" id=9]
+script/source = "extends Node
+
+onready var rainbowFx:AudioStreamPlayer = $RainbowDamage
+onready var asteroidFx:AudioStreamPlayer = $AsteroidDamage
+onready var spearFx:AudioStreamPlayer = $SpearDamage
+
+
+func play(node:Node) -> void:
+	
+	if node is StaticBody2D:
+		
+		rainbowFx.play()
+		print (\"rainbow fx =)\")
+		
+	elif node.name.begins_with(\"Ro\"):
+		
+		asteroidFx.play()
+		print (\"asteroid fx =)\")
+		
+	else:
+		
+		spearFx.play()
+		print (\"spear fx =)\")
+"
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 2 )
@@ -147,6 +173,18 @@ shape = SubResource( 7 )
 
 [node name="Flasher" type="Node" parent="."]
 script = SubResource( 8 )
+
+[node name="Gun" type="Position2D" parent="."]
+position = Vector2( 150, -37 )
+
+[node name="DamageFx" type="Node" parent="."]
+script = SubResource( 9 )
+
+[node name="RainbowDamage" type="AudioStreamPlayer" parent="DamageFx"]
+
+[node name="AsteroidDamage" type="AudioStreamPlayer" parent="DamageFx"]
+
+[node name="SpearDamage" type="AudioStreamPlayer" parent="DamageFx"]
 
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]

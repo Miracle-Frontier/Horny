@@ -1,7 +1,7 @@
 extends Node2D
 
-const SHAKE_STRENGTH: float  = 30.0
-const SHAKE_DECAY_RATE: float = 5.0
+const SHAKE_STRENGTH: float  = 10.0
+const SHAKE_DECAY_RATE: float = 3.0
 
 onready var rand = RandomNumberGenerator.new()
 

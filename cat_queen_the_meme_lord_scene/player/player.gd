@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 signal player_contacted
 
+
+const Bullet:PackedScene = preload("res://cat_queen_the_meme_lord_scene/bullet/bullet.tscn")
 const INVULNERABILITY_TIME: float = 1.0
 const EMIT_TIMER: float = 0.2
 const DIRECTION_LEFT:float = -1.0
@@ -16,9 +18,12 @@ const acceleration : float = 1.0
 const friction : float = 0.1
 var velocity : Vector2
 var direction : Vector2
-var contact:bool = false
 var time_between_emit_signal:float = 0
+var fire_ready:bool = true
+var contact_bodys:Array = []
 
+onready var damage_fx:Node = $DamageFx
+onready var gun:Node2D = $Gun
 onready var flasher:Node = $Flasher
 onready var invulnerability:bool = false
 onready var invulnerability_timer:float = INVULNERABILITY_TIME
@@ -27,7 +32,8 @@ func _physics_process(delta: float) -> void:
 	direction.x = float(Input.is_action_pressed("ui_right")) - float(Input.is_action_pressed("ui_left"))
 	direction.y = float(Input.is_action_pressed("ui_down")) - float(Input.is_action_pressed("ui_up"))
 	direction = direction.normalized()
-	
+	if Input.is_action_just_pressed("ui_accept"):
+		_fire()
 	velocity = lerp(velocity, direction * speed, acceleration * delta)
 	velocity = lerp(velocity, Vector2.ZERO, friction * delta)
 
@@ -38,7 +44,19 @@ func _physics_process(delta: float) -> void:
 	if direction.x > 0:
 		transform.x.x = abs(transform.x.x)
 	elif direction.x < 0:
-		transform.x.x = -abs(transform.x.x)
+		transform.x.x = -abs(transform.x.x)	
+
+
+func _fire() -> void:
+	if not fire_ready:
+		return
+	fire_ready = false	
+	var bullet:Node2D = Bullet.instance()
+	bullet.direction.x = transform.x.x
+	get_tree().current_scene.add_child(bullet)
+	bullet.global_position = gun.global_position
+	yield(get_tree().create_timer(0.2),"timeout")
+	fire_ready = true
 
 
 func _process(delta: float) -> void:
@@ -46,24 +64,40 @@ func _process(delta: float) -> void:
 		invulnerability_timer -= delta
 		if invulnerability_timer <= 0:
 			invulnerability = false
-	elif contact:
+	elif contact_bodys.size() > 0:
 		time_between_emit_signal += delta
 		if time_between_emit_signal >= EMIT_TIMER:
-			time_between_emit_signal = 0.0
-			emit_signal("player_contacted")
+			_player_contacted()
 			print("long player contac!")
 
 
-func _on_Area_body_entered(body: Node) -> void:
-	if invulnerability:
-		return
-	contact = true
+func _player_contacted() -> void:
 	time_between_emit_signal = 0.0
 	emit_signal("player_contacted")
+	damage_fx.play(get_contact_node())
 	flasher.flash(INVULNERABILITY_TIME)
 	invulnerability = true
 	invulnerability_timer = INVULNERABILITY_TIME
 	
+
+func get_contact_node() -> Node:
+	var body:Node = contact_bodys[0]
+	if body is KinematicBody2D:
+		return body
+	elif body is StaticBody2D:
+		return body.get_parent()
+	else:
+		print("Undefinded body! " + str(body))
+		return body
 	
+func play_fx() -> void:
+	pass
+
+
+func _on_Area_body_entered(body: Node) -> void:
+	print(body.name)
+	contact_bodys.append(body)
+
+
 func _on_Area_body_exited(body: Node) -> void:
-	contact = false
+	contact_bodys.remove(contact_bodys.find(body)) 

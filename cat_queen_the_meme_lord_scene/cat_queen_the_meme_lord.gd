@@ -13,6 +13,7 @@ onready var progress:Node = $UI/ProgressBar
 
 
 func _ready() -> void:
+	get_tree().set_current_scene(self) # костыль
 	$UI/ProgressBar.connect("is_over", self, "time_over")
 	shake.set_camera($Camera2D)
 	$Player.connect("player_contacted", self, "reset_time")
@@ -20,8 +21,8 @@ func _ready() -> void:
 	
 	
 func _test() -> void:
-	create_asteroid(600, 200, Vector2(2, 2), false)
-	create_asteroid(600, 200, Vector2(2, 2), true)
+	create_asteroid(600, 10, Vector2(2, 2), false)
+	create_asteroid(600, 10, Vector2(2, 2), true)
 	create_flappy_bird(500, 600, false)
 	create_flappy_bird(500, 600, true)
 	create_spear(Side.RIGHT, 500)
@@ -50,6 +51,7 @@ func shake_screen() -> void:
 
 
 func reset_time() -> void:
+	shake_screen()
 	progress.reset_time()
 
 
