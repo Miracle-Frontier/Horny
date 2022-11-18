@@ -2,7 +2,7 @@
 
 [ext_resource path="res://cat_queen_the_meme_lord_scene/rock/base_rock.gd" type="Script" id=1]
 
-[node name="Rock" type="KinematicBody2D"]
+[node name="Rock" type="KinematicBody2D" groups=["rock"]]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource( 1 )

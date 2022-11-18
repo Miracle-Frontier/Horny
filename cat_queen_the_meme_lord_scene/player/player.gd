@@ -44,7 +44,7 @@ func _physics_process(delta: float) -> void:
 	if direction.x > 0:
 		transform.x.x = abs(transform.x.x)
 	elif direction.x < 0:
-		transform.x.x = -abs(transform.x.x)	
+		transform.x.x = -abs(transform.x.x)
 
 
 func _fire() -> void:
@@ -68,34 +68,19 @@ func _process(delta: float) -> void:
 		time_between_emit_signal += delta
 		if time_between_emit_signal >= EMIT_TIMER:
 			_player_contacted()
-			print("long player contac!")
+			#print("long player contac!")
 
 
 func _player_contacted() -> void:
 	time_between_emit_signal = 0.0
 	emit_signal("player_contacted")
-	damage_fx.play(get_contact_node())
+	damage_fx.play(contact_bodys[0])
 	flasher.flash(INVULNERABILITY_TIME)
 	invulnerability = true
 	invulnerability_timer = INVULNERABILITY_TIME
-	
-
-func get_contact_node() -> Node:
-	var body:Node = contact_bodys[0]
-	if body is KinematicBody2D:
-		return body
-	elif body is StaticBody2D:
-		return body.get_parent()
-	else:
-		print("Undefinded body! " + str(body))
-		return body
-	
-func play_fx() -> void:
-	pass
 
 
 func _on_Area_body_entered(body: Node) -> void:
-	print(body.name)
 	contact_bodys.append(body)
 
 

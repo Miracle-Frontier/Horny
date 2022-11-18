@@ -10,18 +10,10 @@ func _process(delta: float) -> void:
 
 
 func _on_Bullet_body_entered(body: Node) -> void:
-
-	if body is KinematicBody2D:
-		if body.has_method("damage"):
+	if body.has_method("damage"):
 			body.damage(1.0)
-		else:
-			print(str(body) + " no has damage method!")	
-	elif body is StaticBody2D:
-		if body.get_parent().has_method("damage"):
-			body.get_parent().damage(1.0)
-		else:
-			print(str(body.get_parent()) + " no has damage method!")	
-		
+	else:
+		print(str(body) + " no has damage method!")	
 	queue_free()
 
 
