@@ -135,6 +135,7 @@ func play(node:Node) -> void:
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
+collision_mask = 129
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -37,7 +37,6 @@ func _test() -> void:
 	#create_spear(Side.DOWN, 800)
 	shake_screen()
 	pass
-	
 
 
 func _process(delta):

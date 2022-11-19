@@ -12,7 +12,7 @@ var damaged:bool = false
 func _ready() -> void:
 	angular_velocity = rand_range(-2, 2)
 	linear_velocity += direction * speed
-
+	
 
 func _on_VisibilityNotifier2D_screen_exited() -> void:
 	queue_free()
