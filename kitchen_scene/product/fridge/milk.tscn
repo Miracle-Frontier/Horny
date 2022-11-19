@@ -7,7 +7,7 @@
 radius = 64.6817
 height = 140.178
 
-[node name="Product" instance=ExtResource( 2 )]
+[node name="Product" groups=["milk"] instance=ExtResource( 2 )]
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 1 )
@@ -15,5 +15,4 @@ texture = ExtResource( 1 )
 [node name="CollisionShape2D" parent="Area2D" index="0" groups=["milk"]]
 position = Vector2( -1, 4 )
 rotation = 0.0174443
-scale = Vector2( 1, 1 )
 shape = SubResource( 1 )

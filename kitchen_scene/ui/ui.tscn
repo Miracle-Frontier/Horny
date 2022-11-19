@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://kitchen_scene/ui/cancel_pressed.png" type="Texture" id=1]
-[ext_resource path="res://kitchen_scene/kitchen/inventory.png" type="Texture" id=2]
 [ext_resource path="res://kitchen_scene/ui/cancel.png" type="Texture" id=3]
 [ext_resource path="res://kitchen_scene/ui/leave_not_active.png" type="Texture" id=4]
 [ext_resource path="res://kitchen_scene/ui/leave.png" type="Texture" id=5]
+[ext_resource path="res://kitchen_scene/ui/inventory_item/item.tscn" type="PackedScene" id=6]
 
 [node name="UI" type="CanvasLayer"]
 layer = 0
@@ -40,19 +40,12 @@ margin_right = 1061.0
 margin_bottom = 873.0
 size_flags_horizontal = 8
 
-[node name="Item1" type="TextureButton" parent="Control/HBoxContainer"]
-margin_right = 165.0
-margin_bottom = 136.0
-texture_normal = ExtResource( 2 )
+[node name="Item1" parent="Control/HBoxContainer" instance=ExtResource( 6 )]
 
-[node name="Item2" type="TextureButton" parent="Control/HBoxContainer"]
+[node name="Item2" parent="Control/HBoxContainer" instance=ExtResource( 6 )]
 margin_left = 169.0
 margin_right = 334.0
-margin_bottom = 136.0
-texture_normal = ExtResource( 2 )
 
-[node name="Item3" type="TextureButton" parent="Control/HBoxContainer"]
+[node name="Item3" parent="Control/HBoxContainer" instance=ExtResource( 6 )]
 margin_left = 338.0
 margin_right = 503.0
-margin_bottom = 136.0
-texture_normal = ExtResource( 2 )

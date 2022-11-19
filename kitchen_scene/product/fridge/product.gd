@@ -1,7 +1,10 @@
 extends Node2D
 
 
+
 var selected:bool = false
+
+onready var save_position:Vector2 = position
 
 
 func _ready() -> void:

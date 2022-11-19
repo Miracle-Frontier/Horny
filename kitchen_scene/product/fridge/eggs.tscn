@@ -7,7 +7,7 @@
 radius = 78.0134
 height = 84.4252
 
-[node name="Product" instance=ExtResource( 1 )]
+[node name="Product" groups=["eggs"] instance=ExtResource( 1 )]
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )

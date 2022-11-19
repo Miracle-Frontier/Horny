@@ -1,11 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://kitchen_scene/product/fridge/onion.tscn" type="PackedScene" id=1]
 [ext_resource path="res://kitchen_scene/product/fridge/milk.tscn" type="PackedScene" id=2]
 [ext_resource path="res://kitchen_scene/product/fridge/eggs.tscn" type="PackedScene" id=3]
 [ext_resource path="res://kitchen_scene/product/fridge/lettuce.tscn" type="PackedScene" id=4]
 [ext_resource path="res://kitchen_scene/product/fridge/sausages.tscn" type="PackedScene" id=5]
-[ext_resource path="res://kitchen_scene/fridge/_0007_background.png" type="Texture" id=6]
+[ext_resource path="res://kitchen_scene/fridge/background.png" type="Texture" id=6]
 [ext_resource path="res://kitchen_scene/product/fridge/hot_dog_bread.tscn" type="PackedScene" id=7]
 [ext_resource path="res://kitchen_scene/product/fridge/beef.tscn" type="PackedScene" id=8]
 [ext_resource path="res://kitchen_scene/ui/ui.tscn" type="PackedScene" id=9]
@@ -13,11 +13,13 @@
 [ext_resource path="res://kitchen_scene/product/fridge/broccoli.tscn" type="PackedScene" id=11]
 [ext_resource path="res://kitchen_scene/product/fridge/tomatoes.tscn" type="PackedScene" id=12]
 [ext_resource path="res://kitchen_scene/product/fridge/pickles.tscn" type="PackedScene" id=13]
+[ext_resource path="res://kitchen_scene/fridge/fridge.gd" type="Script" id=14]
 
 [node name="Fridge" type="Node2D"]
 position = Vector2( -2, -4 )
+script = ExtResource( 14 )
 
-[node name="0007Background" type="Sprite" parent="."]
+[node name="Background" type="Sprite" parent="."]
 position = Vector2( 803, 452 )
 texture = ExtResource( 6 )
 
