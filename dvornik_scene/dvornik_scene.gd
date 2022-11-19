@@ -46,7 +46,7 @@ func _ready() -> void:
 	get_parent().add_child(canvas)
 	canvas.add_child(shader_animation)
 	shader_animation.get_node("AnimationPlayer").connect("next_scene",self,"next_scene")
-	
+	$GarbageContainer.connect("garbage_cleared", self, "_show_rofi")	
 
 func _connet_garbage() -> void:
 	var garbages:Array = $GarbageContainer.get_children()
@@ -70,12 +70,12 @@ func garbage_cleared() -> void:
 	_update_score()
 	if _score >= MAX_SCORE:
 		$GarbageContainer.need_remove = true
-		_show_rofi()
 
 
 func _show_rofi() -> void:
 	if rofi_initialized:
 		return
+	print("show rofi")	
 	rofi_initialized = true	
 	rofi = _rofi.instance()
 
@@ -85,7 +85,7 @@ func _show_rofi() -> void:
 	rofi_position.x += get_viewport().size.x * 2
 	rofi_position.y = $RofiHeightPosition.position.y
 	rofi.global_position = rofi_position
-	rofi.connect("rofi_is_now_agressive",self,"rofi_opens_portal")
+	rofi.connect("rofi_is_now_agressive", self, "rofi_opens_portal")
 
 var cat_queen_scene = preload("res://cat_queen_the_meme_lord_scene/cat_queen_the_meme_lord.tscn")
 

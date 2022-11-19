@@ -129,6 +129,8 @@ extents = Vector2( 500000, 10 )
 [sub_resource type="GDScript" id=7]
 script/source = "extends Node2D
 
+signal garbage_cleared
+
 var count_garbage_in_screen = 0
 var need_remove:bool = false
 
@@ -160,6 +162,7 @@ func _clear_all_garbage() -> void:
 	var garbages:Array = get_children()
 	for garbage in garbages:
 		garbage.queue_free()
+	emit_signal(\"garbage_cleared\")	
 
 
 func is_garbage_out_screen() -> bool:

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/inverse.mp3-04a7020079bc1f609c8e60203e14ef32.mp3str"
+
+[deps]
+
+source_file="res://cat_queen_the_meme_lord_scene/assets/fx/inverse.mp3"
+dest_files=[ "res://.import/inverse.mp3-04a7020079bc1f609c8e60203e14ef32.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
