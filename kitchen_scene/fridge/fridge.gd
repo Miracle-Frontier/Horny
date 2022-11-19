@@ -1,5 +1,7 @@
 extends Node2D
 
+var positions:Dictionary = {}
+
 
 func _ready() -> void:
 	$Product.connect("drag_start", self, "drag_start")
