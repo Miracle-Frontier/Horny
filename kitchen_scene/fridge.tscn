@@ -1,3 +1,56 @@
-[gd_scene format=2]
+[gd_scene load_steps=14 format=2]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource path="res://kitchen_scene/product/fridge/onion.tscn" type="PackedScene" id=1]
+[ext_resource path="res://kitchen_scene/product/fridge/milk.tscn" type="PackedScene" id=2]
+[ext_resource path="res://kitchen_scene/product/fridge/eggs.tscn" type="PackedScene" id=3]
+[ext_resource path="res://kitchen_scene/product/fridge/lettuce.tscn" type="PackedScene" id=4]
+[ext_resource path="res://kitchen_scene/product/fridge/sausages.tscn" type="PackedScene" id=5]
+[ext_resource path="res://kitchen_scene/fridge/_0007_background.png" type="Texture" id=6]
+[ext_resource path="res://kitchen_scene/product/fridge/hot_dog_bread.tscn" type="PackedScene" id=7]
+[ext_resource path="res://kitchen_scene/product/fridge/beef.tscn" type="PackedScene" id=8]
+[ext_resource path="res://kitchen_scene/ui/ui.tscn" type="PackedScene" id=9]
+[ext_resource path="res://kitchen_scene/clickable/clickable_sprite.tscn" type="PackedScene" id=10]
+[ext_resource path="res://kitchen_scene/product/fridge/broccoli.tscn" type="PackedScene" id=11]
+[ext_resource path="res://kitchen_scene/product/fridge/tomatoes.tscn" type="PackedScene" id=12]
+[ext_resource path="res://kitchen_scene/product/fridge/pickles.tscn" type="PackedScene" id=13]
+
+[node name="Fridge" type="Node2D"]
+position = Vector2( -2, -4 )
+
+[node name="0007Background" type="Sprite" parent="."]
+position = Vector2( 803, 452 )
+texture = ExtResource( 6 )
+
+[node name="UI" parent="." instance=ExtResource( 9 )]
+
+[node name="ClickableSprite" parent="." instance=ExtResource( 10 )]
+
+[node name="Product" parent="." instance=ExtResource( 8 )]
+position = Vector2( 407, 335 )
+
+[node name="Product2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 821, 592 )
+
+[node name="Product3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1346, 266 )
+
+[node name="Product4" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1058, 566 )
+
+[node name="Product5" parent="." instance=ExtResource( 4 )]
+position = Vector2( 371, 99 )
+
+[node name="Product6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1290, 618 )
+
+[node name="Product7" parent="." instance=ExtResource( 1 )]
+position = Vector2( 337, 612 )
+
+[node name="Product8" parent="." instance=ExtResource( 13 )]
+position = Vector2( 1047, 277 )
+
+[node name="Product9" parent="." instance=ExtResource( 5 )]
+position = Vector2( 736, 329 )
+
+[node name="Product10" parent="." instance=ExtResource( 12 )]
+position = Vector2( 521, 608 )

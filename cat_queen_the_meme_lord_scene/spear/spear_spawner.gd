@@ -4,16 +4,16 @@ const Spear:PackedScene = preload("res://cat_queen_the_meme_lord_scene/spear/spe
 const Warning:PackedScene = preload("res://cat_queen_the_meme_lord_scene/spear/warning.tscn")
 
 var degrees_map:Dictionary = {Side.UP: -90, Side.DOWN: 90, Side.LEFT: 180, Side.RIGHT: 0}
-var direction_map:Dictionary = {Side.UP: Vector2(0, -1), Side.DOWN: Vector2(0, 1), Side.LEFT: Vector2(-1, 0), Side.RIGHT: Vector2(1, 0)}
+var direction_map:Dictionary = {Side.UP: Vector2.UP, Side.DOWN: Vector2.DOWN, Side.LEFT: Vector2.LEFT, Side.RIGHT: Vector2.RIGHT}
 var position_map:Dictionary = {Side.UP: Vector2(0, 900), Side.DOWN: Vector2(0, 0), Side.LEFT: Vector2(1600, 0), Side.RIGHT: Vector2(0, 0)}
 
 enum Side { UP, DOWN, LEFT, RIGHT }
 
 
 func create_spear(var side:int, position_vlue:float) -> void:
-	var warning:Node2D = _create_warning(side, position_vlue)
-	yield(get_tree().create_timer(0.5), "timeout")
-	warning.queue_free()
+	#var warning:Node2D = _create_warning(side, position_vlue)
+	#yield(get_tree().create_timer(2.0), "timeout")
+	#warning.queue_free()
 	_create_spear(side, position_vlue)
 
 
@@ -30,9 +30,7 @@ func _create_spear(var side:int, position_value:float) -> void:
 	get_parent().add_child(spear)
 	spear.rotation_degrees = degrees_map[side]
 	spear.global_position = _create_position(side, position_value)
-	spear.global_position = self.global_position
 	spear.set_direction(direction_map[side])
-	#spear.queue_free()
 
 
 func _create_position(side:int, position_value:float) -> Vector2:
