@@ -1,13 +1,16 @@
 extends Line2D
 
+signal end_smoke
+
 
 export(bool) var limit_life_time:bool = false
 export(float) var wildness:float = 3.0
-export(float) var min_spaw_distance = 5.0
+export(float) var min_spaw_distance = 0.1
 
-var gravity:Vector2 = Vector2.UP
-var lifetime:Array = [1.0, 2.0]
-var tick_speed:float = 0.05
+
+var gravity:Vector2 = Vector2.LEFT
+var lifetime:Array = [5.0, 5.0]
+var tick_speed:float = 0.001
 var tick:float = 0.0
 var wild_speed:float = 0.1
 var point_age:Array = [0.0]
@@ -33,12 +36,14 @@ func _process(delta: float) -> void:
 	if tick >= tick_speed:
 		tick = 0
 		for p in range(get_point_count()):
-			point_age[p] += 5 * delta
+			point_age[p] += 2 * delta
 			var rnd_vector:Vector2 = Vector2(rand_range(-wild_speed, wild_speed), rand_range(-wild_speed, wild_speed))
-			points[p] += gravity + (rnd_vector * wildness)
+			points[p] +=  20 * gravity + (rnd_vector * wildness)
 	else:
 		tick += delta
+	add_point(position)
 
 
 func _on_Decay_tween_all_completed() -> void:
-	queue_free()
+	emit_signal("end_smoke")
+	pass
