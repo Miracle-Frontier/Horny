@@ -3,7 +3,7 @@ extends Node2D
 class_name DvornikScene
 
 const LEFT_MOUSE:int = 1;
-const MAX_SCORE = 1
+const MAX_SCORE = 8
 const MIN_DISTANCE = 800
 const MAX_DISTANCE = 500000
 
@@ -110,7 +110,7 @@ func next_scene(): # TODO : ВЫЗВАТЬ new ShaderMaterial, иначе все
 	player.show_particles = false
 	player.global_position.x = 1200
 	$BroomSweep.volume_db = -100.0
-	$Portal.play()
+	$Portal.play(0.1)
 	yield(get_tree().create_timer(2), "timeout")
 	#player.global_position.x = 1200
 	$UI.queue_free()
@@ -140,10 +140,11 @@ func cutscene_ended(_name):
 	#queue_free()
 	pass
 
+
 func rofi_opens_portal():
 	var light = rofi.get_node("Light")
 	camera.global_position.x = clamp(rofi.global_position.x, MIN_DISTANCE, MAX_DISTANCE)
-	var saved_position = camera.global_position.y
+	saved_position = camera.global_position.y
 	camera.global_position.y -= 100
 	enable_camera = false
 	speaking_to_rofi = true
@@ -151,26 +152,32 @@ func rofi_opens_portal():
 	var current_tween = create_tween()
 	current_tween.set_trans(Tween.TRANS_CUBIC)
 	$RofiSound.play()
-
+	var sound_tween = create_tween()
+	sound_tween.set_trans(Tween.TRANS_CUBIC)
+	sound_tween.tween_property($CityVibe, "volume_db", -50.0, 2.5)
 	current_tween.tween_property($Camera2D, "zoom:x", 0.45, 0.7)
 	var current_tween2 = create_tween()
 	current_tween2.set_trans(Tween.TRANS_CUBIC)
 	current_tween2.tween_property($Camera2D, "zoom:y", 0.45, 0.7)
-	yield(get_tree().create_timer(1), "timeout")
-	var current_tween3 = create_tween()
-	current_tween3.set_trans(Tween.TRANS_CUBIC)
-	current_tween3.tween_property(light, "modulate:a", 0.9, 0.3)
-	var current_tween4 = create_tween()
-	current_tween4.set_trans(Tween.TRANS_CUBIC)
-	current_tween4.tween_property(light, "scale:x", 1.5, 0.3)
-	var current_tween5 = create_tween()
-	current_tween5.set_trans(Tween.TRANS_CUBIC)
-	current_tween5.tween_property(light, "scale:y", 1.5, 0.3)
-	yield(get_tree().create_timer(0.3), "timeout")
+	yield(get_tree().create_timer(1.5), "timeout")
+	enable_camera = false
+	speaking_to_rofi = true
+	var dialog = Dialogic.start("rofi_says_2")
+	dialog.pause_mode = Node.PAUSE_MODE_PROCESS
+	dialog.connect("timeline_end", self, "cutscene_ended_2")
+	add_child(dialog)
+
+var saved_position
+
+func cutscene_ended_2(_name):
+	enable_camera = true
+	speaking_to_rofi = false
+	#yield(get_tree().create_timer(0.3), "timeout")
 	$Camera2D.smoothing_speed = 2
 	camera.global_position.y = saved_position
 	cutscene_ended("")
-	shader_animation.get_node("AnimationPlayer").play("ShockWave")
+	shader_animation.get_node("AnimationPlayer").play("ShockWave")	
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

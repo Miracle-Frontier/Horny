@@ -8,7 +8,7 @@ const DIRECTION_LEFT:float = -1.0
 const DIRECTION_RIGHT:float = 1.0
 var SmokeEffect = preload("res://dvornik_scene/cleaner/smoke/smoke.tscn")
 
-export var speed:float = 800#200
+export var speed:float = 200#200
 
 var _current_turn = TurnSide.NONE
 var _smoke_ready:bool = true

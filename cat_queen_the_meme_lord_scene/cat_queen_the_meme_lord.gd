@@ -19,6 +19,10 @@ func _ready() -> void:
 	$Player.connect("player_contacted", self, "reset_time")
 	_test()
 	
+	var tween_background_alpha = create_tween()
+	tween_background_alpha.set_trans(Tween.TRANS_CUBIC)
+	tween_background_alpha.tween_property($ParallaxBackground/ParallaxLayer/Background, "modulate:a", 1.0, 2.5)
+	
 	
 func _test() -> void:
 	create_asteroid(600, 10, Vector2(2, 2), false)
