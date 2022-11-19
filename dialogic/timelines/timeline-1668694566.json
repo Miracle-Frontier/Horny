@@ -2,13 +2,19 @@
 	"events": [
 		{
 			"event_id": "dialogic_024",
-			"set_theme": "theme-1668694683.cfg"
+			"set_theme": "theme-1668771013.cfg"
 		},
 		{
 			"character": "",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": ". . ."
+			"text": "- Hey! Isn't smoking here prohibited?!"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "What a bimbo.."
 		}
 	],
 	"metadata": {
