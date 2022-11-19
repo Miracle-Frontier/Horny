@@ -4,20 +4,20 @@
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/ui/gray.png" type="Texture" id=2]
 
 [sub_resource type="Curve" id=1]
-_data = [ Vector2( 0.000831947, 0.978528 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.144172 ), -1.32869, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0.929448 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.236196 ), -1.32869, 0.0, 0, 0 ]
 
 [sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0.780669, 1 )
-colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.837891, 0.837891, 0.837891, 1 )
 
 [node name="Smoketrail" type="Line2D"]
-position = Vector2( -63, 37 )
-width = 20.0
+width = 5.0
 width_curve = SubResource( 1 )
 gradient = SubResource( 2 )
 texture = ExtResource( 2 )
 texture_mode = 2
 script = ExtResource( 1 )
+limit_life_time = true
+min_spaw_distance = 1.0
 
 [node name="Decay" type="Tween" parent="."]
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://cat_queen_the_meme_lord_scene/bullet/bullet.gd" type="Script" id=1]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/bullet/smoketrail.tscn" type="PackedScene" id=2]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/bullet.png" type="Texture" id=3]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/ui/white.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 17.0
@@ -22,10 +23,10 @@ position = Vector2( 0, 3 )
 shape = SubResource( 1 )
 
 [node name="Smoketrail" parent="." instance=ExtResource( 2 )]
-width = 30.0
-limit_life_time = true
-wildness = 5.0
-min_spaw_distance = 1.0
+position = Vector2( 0, 3 )
+points = PoolVector2Array( 0, 0 )
+width = 20.0
+texture = ExtResource( 4 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( -4.76837e-07, 9.53674e-07 )
