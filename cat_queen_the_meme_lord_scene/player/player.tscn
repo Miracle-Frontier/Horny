@@ -1,7 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/actor1.png" type="Texture" id=1]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/player/player.gd" type="Script" id=2]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/fx/damage2.mp3" type="AudioStream" id=3]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/fx/damage3.mp3" type="AudioStream" id=4]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/fx/damage1.mp3" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 132.25, 47.5 )
@@ -112,6 +115,24 @@ func _flash(delta: float) -> void:
 		parent.modulate.r = modulate_value
 "
 
+[sub_resource type="GDScript" id=9]
+script/source = "extends Node
+
+onready var rainbowFx:AudioStreamPlayer = $RainbowDamage
+onready var asteroidFx:AudioStreamPlayer = $AsteroidDamage
+onready var spearFx:AudioStreamPlayer = $SpearDamage
+
+
+func play(node:Node) -> void:
+	print(node)
+	if node.is_in_group(\"gate\"):
+		rainbowFx.play()
+	elif node.is_in_group(\"rock\"):
+		asteroidFx.play()
+	else:
+		spearFx.play()
+"
+
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 2 )
@@ -147,6 +168,21 @@ shape = SubResource( 7 )
 
 [node name="Flasher" type="Node" parent="."]
 script = SubResource( 8 )
+
+[node name="Gun" type="Position2D" parent="."]
+position = Vector2( 150, -37 )
+
+[node name="DamageFx" type="Node" parent="."]
+script = SubResource( 9 )
+
+[node name="RainbowDamage" type="AudioStreamPlayer" parent="DamageFx"]
+stream = ExtResource( 5 )
+
+[node name="AsteroidDamage" type="AudioStreamPlayer" parent="DamageFx"]
+stream = ExtResource( 3 )
+
+[node name="SpearDamage" type="AudioStreamPlayer" parent="DamageFx"]
+stream = ExtResource( 4 )
 
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]

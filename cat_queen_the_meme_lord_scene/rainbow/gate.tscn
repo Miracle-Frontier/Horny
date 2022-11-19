@@ -12,40 +12,36 @@ extents = Vector2( 103, 714.125 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 5, 40 )
 
-[node name="Gate" type="Node2D"]
+[node name="Walls" type="StaticBody2D" groups=["gate"]]
+collision_layer = 48
+collision_mask = 0
 script = ExtResource( 2 )
 
-[node name="Walls" type="StaticBody2D" parent="."]
-collision_layer = 16
-collision_mask = 0
-
-[node name="UpperWallSprite" type="Sprite" parent="Walls"]
+[node name="UpperWallSprite" type="Sprite" parent="."]
 scale = Vector2( 2, 8.65663 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -83 )
 
-[node name="UppwerWallCollision" type="CollisionShape2D" parent="Walls"]
+[node name="UppwerWallCollision" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -716 )
 shape = SubResource( 4 )
 
-[node name="LowerWallSprite" type="Sprite" parent="Walls"]
+[node name="LowerWallSprite" type="Sprite" parent="."]
 scale = Vector2( 2, 8.59036 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, 83 )
 
-[node name="LowerWallCollision" type="CollisionShape2D" parent="Walls"]
+[node name="LowerWallCollision" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 714.125 )
 shape = SubResource( 1 )
 
-[node name="PointArea2D" type="Area2D" parent="Walls"]
+[node name="PointArea2D" type="Area2D" parent="."]
 visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/PointArea2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PointArea2D"]
 visible = false
 shape = SubResource( 3 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( 1, 0 )
 scale = Vector2( 17.35, 1 )
-
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
