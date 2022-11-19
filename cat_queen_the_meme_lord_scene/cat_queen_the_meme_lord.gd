@@ -17,34 +17,36 @@ func _ready() -> void:
 	$UI/ProgressBar.connect("is_over", self, "time_over")
 	shake.set_camera($Camera2D)
 	$Player.connect("player_contacted", self, "reset_time")
-	_test()
-	
+
 	var tween_background_alpha = create_tween()
 	tween_background_alpha.set_trans(Tween.TRANS_CUBIC)
 	tween_background_alpha.tween_property($ParallaxBackground/ParallaxLayer/Background, "modulate:a", 1.0, 2.5)
-	
+	_test()	
 	
 func _test() -> void:
-	create_asteroid(600, 10, Vector2(2, 2), false)
-	create_asteroid(600, 50, Vector2(2, 2), true)
-	create_asteroid(600, 30, Vector2(2, 2), false)
-	create_flappy_bird(500, 600, true)
-	create_flappy_bird(500, 600, false)
+	create_asteroid(600, 800, Vector2(2, 2), false)
+	#create_asteroid(100, 300.0, Vector2(2, 2), false)
+	#create_asteroid(600, 50, Vector2(2, 2), true)
+	#create_asteroid(600, 30, Vector2(2, 2), false)
+	#create_flappy_bird(500, 600, true)
+	#create_flappy_bird(500, 600, false)
+	yield(get_tree().create_timer(3), "timeout")
 	create_spear(Side.RIGHT, 200)
-	create_spear(Side.LEFT, 500)
-	create_spear(Side.UP, 200)
-	create_spear(Side.DOWN, 800)
+	#create_spear(Side.LEFT, 500)
+	#create_spear(Side.UP, 200)
+	#create_spear(Side.DOWN, 800)
 	shake_screen()
+	pass
+	
 
 
 func _process(delta):
-	#print(get_viewport().get_mouse_position().y
+	print(get_viewport().get_mouse_position().y)
 	pass
 
 
 func create_asteroid(y_position:float, speed:float, scale:Vector2, inverse:bool) -> void:
 	asteroid_spawner.create_rock(y_position, speed, scale, inverse)
-
 
 func create_flappy_bird(up_y: float, low_y: float, inverse:bool) -> void:
 	gate_spawner.create_gate(up_y, low_y, inverse)
@@ -64,9 +66,8 @@ func reset_time() -> void:
 
 
 func time_over() -> void:
-	print("time is over = inverse")
-	reset_time()
-	_test()
+	#print("time is over = inverse")
+	#reset_time()
 	_inverse_stars()
 	
 	

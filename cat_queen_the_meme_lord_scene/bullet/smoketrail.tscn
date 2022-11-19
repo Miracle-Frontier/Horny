@@ -7,7 +7,7 @@
 _data = [ Vector2( 0, 0.929448 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.236196 ), -1.32869, 0.0, 0, 0 ]
 
 [sub_resource type="Gradient" id=2]
-colors = PoolColorArray( 0, 0, 0, 0, 0.837891, 0.837891, 0.837891, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 0.837891, 0.837891, 0.837891, 1 )
 
 [node name="Smoketrail" type="Line2D"]
 width = 5.0

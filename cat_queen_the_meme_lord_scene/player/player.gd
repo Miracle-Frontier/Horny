@@ -53,7 +53,7 @@ func _fire() -> void:
 	fire_ready = false	
 	var bullet:Node2D = Bullet.instance()
 	bullet.direction.x = transform.x.x
-	get_tree().current_scene.add_child(bullet)
+	get_parent().add_child(bullet)
 	bullet.global_position = gun.global_position
 	yield(get_tree().create_timer(0.2),"timeout")
 	fire_ready = true

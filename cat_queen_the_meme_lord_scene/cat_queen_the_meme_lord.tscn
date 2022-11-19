@@ -1,18 +1,16 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/start.png" type="Texture" id=1]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/spear/spear_spawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/screen_shake/screen_shake.tscn" type="PackedScene" id=3]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/progress_bar/progress_bar.tscn" type="PackedScene" id=4]
-[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/warning.png" type="Texture" id=5]
 [ext_resource path="res://dvornik_scene/assets/ui/white.png" type="Texture" id=6]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/background.png" type="Texture" id=7]
-[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/fx/inverse.mp3" type="AudioStream" id=7]
-[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/spear.png" type="Texture" id=8]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/rock/rock_spawn.tscn" type="PackedScene" id=9]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/cat_queen_the_meme_lord.gd" type="Script" id=10]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/rainbow/gate_spawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/player/player.tscn" type="PackedScene" id=12]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/fx/inverse.mp3" type="AudioStream" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 602.5, 460 )
@@ -60,16 +58,6 @@ initial_velocity = 500.0
 initial_velocity_random = 0.5
 scale_amount = 0.05
 scale_amount_random = 0.19
-
-[node name="Spear" type="Sprite" parent="."]
-position = Vector2( 265, -843 )
-rotation = 1.57079
-texture = ExtResource( 8 )
-
-[node name="Warning" type="Sprite" parent="Spear"]
-position = Vector2( 897, 6.00198 )
-rotation = 4.71239
-texture = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 12 )]
 position = Vector2( 968, 528 )
@@ -119,13 +107,13 @@ tint_progress = Color( 1, 0, 0.854902, 1 )
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 1600, 900 )
 
 [node name="Background" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 7 )
 centered = false
-__meta__ = {
-"_edit_lock_": true
-}
+
 [node name="InverseFx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
+stream = ExtResource( 13 )
+volume_db = -80.0
