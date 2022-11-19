@@ -21,9 +21,9 @@ func _ready() -> void:
 	
 	
 func _test() -> void:
-	create_asteroid(600, 100, Vector2(2, 2), false)
-	create_asteroid(600, 400, Vector2(2, 2), true)
-	create_asteroid(600, 600, Vector2(2, 2), false)
+	create_asteroid(600, 10, Vector2(2, 2), false)
+	create_asteroid(600, 50, Vector2(2, 2), true)
+	create_asteroid(600, 30, Vector2(2, 2), false)
 	create_flappy_bird(500, 600, true)
 	create_flappy_bird(500, 600, false)
 	create_spear(Side.RIGHT, 200)

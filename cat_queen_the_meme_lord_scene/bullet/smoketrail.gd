@@ -37,7 +37,8 @@ func _process(delta: float) -> void:
 			var rnd_vector:Vector2 = Vector2(rand_range(-wild_speed, wild_speed), rand_range(-wild_speed, wild_speed))
 			points[p] += gravity + (rnd_vector * wildness)
 	else:
-		tick += delta	
+		tick += delta
+
 
 func _on_Decay_tween_all_completed() -> void:
 	queue_free()
