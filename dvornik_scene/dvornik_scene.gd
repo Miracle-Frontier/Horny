@@ -162,14 +162,7 @@ func rofi_opens_portal():
 	yield(get_tree().create_timer(1.5), "timeout")
 	enable_camera = false
 	speaking_to_rofi = true
-	var dialog = if event is InputEventMouseButton:
-		if event.is_pressed() and event.get_button_index() == LEFT_MOUSE:
-			clear_garbage()
-			if randf() > 0.8:
-				if randi() % 2 == 1:
-					_loh()
-				else:
-					_xxx()Dialogic.start("rofi_says_2")
+	var dialog = Dialogic.start("rofi_says_2")
 	dialog.pause_mode = Node.PAUSE_MODE_PROCESS
 	dialog.connect("timeline_end", self, "cutscene_ended_2")
 	add_child(dialog)
