@@ -10,13 +10,13 @@
 [node name="TestScene" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 289, 733 )
+position = Vector2( 772, 113 )
 
 [node name="Gate" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1460, 442 )
 
 [node name="Rock" parent="." instance=ExtResource( 3 )]
-position = Vector2( 967, 114 )
+position = Vector2( 875, -168 )
 mass = 1.0
 speed = 0.0
 
@@ -24,11 +24,11 @@ speed = 0.0
 position = Vector2( 1185, 276 )
 
 [node name="Rock2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1179, 725 )
+position = Vector2( 1103, 515 )
 mass = 0.00102041
 speed = 100.0
 
 [node name="Rock3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1185, 276 )
+position = Vector2( 685, -134 )
 mass = 1.0
 speed = 50.0

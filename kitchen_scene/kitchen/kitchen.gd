@@ -10,7 +10,7 @@ onready var leave_button:TextureButton = $Control/Leave
 var fade_action:bool = false
 
 onready var rooms:Dictionary = {
-		$Self/Plate: kitchen,
+		$Self/Plate: $Rooms/CuttingBoard,
 		$Self/Fridge: $Rooms/Fridge,
 		$Self/Saltpepperketchup: kitchen,
 		$Self/Pot: $Rooms/Pot,

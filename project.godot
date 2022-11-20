@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Cook",
+"language": "GDScript",
+"path": "res://kitchen_scene/cook.gd"
+}, {
 "base": "Reference",
 "class": "DTS",
 "language": "GDScript",
@@ -70,9 +75,9 @@ _global_script_classes=[ {
 "path": "res://addons/dialogic/Example Assets/History/HistoryRow.gd"
 }, {
 "base": "Control",
-"class": "Place",
+"class": "Inventory",
 "language": "GDScript",
-"path": "res://kitchen_scene/place/place.gd"
+"path": "res://kitchen_scene/ui/inventory.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
@@ -88,8 +93,14 @@ _global_script_classes=[ {
 "class": "Rofi",
 "language": "GDScript",
 "path": "res://dvornik_scene/cleaner/rofi/rofi.gd"
+}, {
+"base": "Node2D",
+"class": "RoomK",
+"language": "GDScript",
+"path": "res://kitchen_scene/room.gd"
 } ]
 _global_script_class_icons={
+"Cook": "",
 "DTS": "",
 "Dialogic": "",
 "DialogicAnimaPropertiesHelper": "",
@@ -102,10 +113,11 @@ _global_script_class_icons={
 "DialogicUtil": "",
 "DvornikScene": "",
 "HistoryRow": "",
-"Place": "",
+"Inventory": "",
 "Player": "",
 "Product": "",
-"Rofi": ""
+"Rofi": "",
+"RoomK": ""
 }
 
 [application]

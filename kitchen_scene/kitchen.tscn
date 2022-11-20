@@ -1,26 +1,28 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://kitchen_scene/kitchen/pot.png" type="Texture" id=1]
-[ext_resource path="res://kitchen_scene/kitchen/background.png" type="Texture" id=2]
-[ext_resource path="res://kitchen_scene/kitchen/deco2.png" type="Texture" id=3]
-[ext_resource path="res://kitchen_scene/kitchen/plate.png" type="Texture" id=4]
+[ext_resource path="res://kitchen_scene/kitchen/assets/pot.png" type="Texture" id=1]
+[ext_resource path="res://kitchen_scene/kitchen/assets/background.png" type="Texture" id=2]
+[ext_resource path="res://kitchen_scene/kitchen/assets/deco2.png" type="Texture" id=3]
+[ext_resource path="res://kitchen_scene/kitchen/assets/plate.png" type="Texture" id=4]
 [ext_resource path="res://kitchen_scene/ui/inventory.tscn" type="PackedScene" id=5]
-[ext_resource path="res://kitchen_scene/kitchen/fridge.png" type="Texture" id=6]
-[ext_resource path="res://kitchen_scene/kitchen/kitchen_stand.png" type="Texture" id=7]
+[ext_resource path="res://kitchen_scene/kitchen/assets/fridge.png" type="Texture" id=6]
+[ext_resource path="res://kitchen_scene/kitchen/assets/kitchen_stand.png" type="Texture" id=7]
 [ext_resource path="res://kitchen_scene/clickable/clickable_sprite.tscn" type="PackedScene" id=8]
 [ext_resource path="res://kitchen_scene/kitchen/kitchen.gd" type="Script" id=9]
 [ext_resource path="res://kitchen_scene/fridge.tscn" type="PackedScene" id=10]
-[ext_resource path="res://kitchen_scene/wash.tscn" type="PackedScene" id=11]
-[ext_resource path="res://kitchen_scene/kitchen/skovoroda.png" type="Texture" id=12]
-[ext_resource path="res://kitchen_scene/kitchen/saltpepperketchup.png" type="Texture" id=13]
-[ext_resource path="res://kitchen_scene/kitchen/wash.png" type="Texture" id=14]
+[ext_resource path="res://kitchen_scene/wash/wash.tscn" type="PackedScene" id=11]
+[ext_resource path="res://kitchen_scene/kitchen/assets/skovoroda.png" type="Texture" id=12]
+[ext_resource path="res://kitchen_scene/kitchen/assets/saltpepperketchup.png" type="Texture" id=13]
+[ext_resource path="res://kitchen_scene/kitchen/assets/wash.png" type="Texture" id=14]
 [ext_resource path="res://kitchen_scene/mixer.tscn" type="PackedScene" id=15]
-[ext_resource path="res://kitchen_scene/skovoroda.tscn" type="PackedScene" id=16]
+[ext_resource path="res://kitchen_scene/skovoroda/skovoroda.tscn" type="PackedScene" id=16]
 [ext_resource path="res://kitchen_scene/pot.tscn" type="PackedScene" id=17]
-[ext_resource path="res://kitchen_scene/cutting_board.tscn" type="PackedScene" id=18]
+[ext_resource path="res://kitchen_scene/cutting_board/cutting_board.tscn" type="PackedScene" id=18]
 [ext_resource path="res://kitchen_scene/ui/assets/leave_not_active.png" type="Texture" id=19]
 [ext_resource path="res://kitchen_scene/ui/assets/leave.png" type="Texture" id=20]
 [ext_resource path="res://kitchen_scene/garbage/garbage.tscn" type="PackedScene" id=21]
+[ext_resource path="res://kitchen_scene/kitchen/assets/deco.png" type="Texture" id=22]
+[ext_resource path="res://kitchen_scene/kitchen/assets/blender.png" type="Texture" id=23]
 
 [node name="Kitchen" type="Node2D"]
 script = ExtResource( 9 )
@@ -35,6 +37,10 @@ __meta__ = {
 [node name="Background" type="Sprite" parent="Self"]
 position = Vector2( 797, 450 )
 texture = ExtResource( 2 )
+
+[node name="Deco2" type="Sprite" parent="Self"]
+position = Vector2( 788, 192 )
+texture = ExtResource( 22 )
 
 [node name="KitchenStand" type="Sprite" parent="Self"]
 position = Vector2( 801, 719 )
@@ -82,40 +88,47 @@ margin_right = 803.0
 margin_bottom = 713.0
 texture_normal = ExtResource( 14 )
 
+[node name="Blender" parent="Self" instance=ExtResource( 8 )]
+margin_left = 408.0
+margin_top = 607.0
+margin_right = 540.0
+margin_bottom = 787.0
+texture_normal = ExtResource( 23 )
+
 [node name="Deco" type="Sprite" parent="Self"]
 position = Vector2( 683, 665 )
 texture = ExtResource( 3 )
 
 [node name="Rooms" type="Node" parent="."]
 
+[node name="Skovoroda" parent="Rooms" instance=ExtResource( 16 )]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+z_index = -1
+
 [node name="CuttingBoard" parent="Rooms" instance=ExtResource( 18 )]
 visible = false
-self_modulate = Color( 1, 1, 1, 0 )
+modulate = Color( 1, 1, 1, 0 )
 z_index = -1
 
 [node name="Fridge" parent="Rooms" instance=ExtResource( 10 )]
 visible = false
-self_modulate = Color( 1, 1, 1, 0 )
+modulate = Color( 1, 1, 1, 0 )
 z_index = -1
 
 [node name="Mixer" parent="Rooms" instance=ExtResource( 15 )]
 visible = false
-self_modulate = Color( 1, 1, 1, 0 )
+modulate = Color( 1, 1, 1, 0 )
 z_index = -1
 
 [node name="Pot" parent="Rooms" instance=ExtResource( 17 )]
 visible = false
-self_modulate = Color( 1, 1, 1, 0 )
-z_index = -1
-
-[node name="Skovoroda" parent="Rooms" instance=ExtResource( 16 )]
-visible = false
-self_modulate = Color( 1, 1, 1, 0 )
+modulate = Color( 1, 1, 1, 0 )
 z_index = -1
 
 [node name="Wash" parent="Rooms" instance=ExtResource( 11 )]
 visible = false
-self_modulate = Color( 1, 1, 1, 0 )
+modulate = Color( 1, 1, 1, 0 )
 z_index = -1
 
 [node name="Control" type="Control" parent="."]

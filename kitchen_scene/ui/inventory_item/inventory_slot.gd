@@ -32,7 +32,7 @@ func get_drag_data(position: Vector2):
 	control.add_child(drag_texture)
 	drag_texture.rect_position = -0.5 * drag_texture.rect_size
 	set_drag_preview(control)
-	clear_product()
+	#clear_product()
 	return data
 
 

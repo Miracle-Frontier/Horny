@@ -1,10 +1,12 @@
 class_name Product
 extends TextureRect
 
+signal press_to(product)
+
+export(bool) var factory:bool = true
 export(bool) var draggable:bool = true
 
 
-onready var parent:Node = null
 onready var selected:bool = false
 onready var grab:bool = false
 onready var start_rect_size:Vector2 = rect_size
@@ -29,6 +31,8 @@ func follow_mouse() -> void:
 
 func _on_Area2D_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
+		emit_signal("press_to", self)
+		
 		selected = event.pressed
 		if not selected and not grab:
 			#position = save_position
@@ -38,7 +42,9 @@ func _on_Area2D_input_event(viewport: Node, event: InputEvent, shape_idx: int) -
 func get_drag_data(position: Vector2):
 	var data = {}
 	clear_modulate()
-	data["product"] = self.duplicate() if parent == null else self #если это истоник продуктов(фабрика), то у него нет родитеской ноды
+	var product:Product = self.duplicate() if factory else self
+	product.factory = false
+	data["product"] = product
 	$Modulator.modulate_on()
 	var drag_texture:TextureRect = TextureRect.new()
 	drag_texture. expand = true
@@ -52,14 +58,18 @@ func get_drag_data(position: Vector2):
 
 
 func remove_from_parent() -> void:
-	if self.parent != null:
-		self.parent.remove_child(self)
+	if get_parent() != null:
+		get_parent().remove_child(self)
 
 
 func set_parent(parent: Node) -> void:
+	if parent == get_parent():
+		return
+	print(get_parent())
 	remove_from_parent()
+	print(get_parent())
 	parent.add_child(self)
-	self.parent = parent
+	
 
 func _on_Product_mouse_entered() -> void:
 	$Modulator.modulate_on()
@@ -71,3 +81,6 @@ func _on_Product_mouse_exited() -> void:
 
 func clear_modulate() -> void:
 	$Modulator.modulate_off()
+
+
+

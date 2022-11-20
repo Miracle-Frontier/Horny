@@ -4,7 +4,7 @@
 [ext_resource path="res://cat_queen_the_meme_lord_scene/spear/spear.gd" type="Script" id=2]
 
 [node name="Spear" type="KinematicBody2D" groups=["spear"]]
-collision_layer = 16
+collision_layer = 0
 collision_mask = 2
 script = ExtResource( 2 )
 
@@ -18,11 +18,11 @@ scale = Vector2( 0.435859, 0.881825 )
 polygon = PoolVector2Array( 28, -29, 447.161, -116.319, 26.7264, -221.782 )
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 16
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Area2D"]
-position = Vector2( 0, 4 )
-polygon = PoolVector2Array( -186, -100, -186, 82, 6, 1 )
+position = Vector2( -1, 4 )
+polygon = PoolVector2Array( -183, -95, -182, 78, 3, 0 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
