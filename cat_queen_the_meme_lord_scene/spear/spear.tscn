@@ -3,7 +3,7 @@
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/spear.png" type="Texture" id=1]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/spear/spear.gd" type="Script" id=2]
 
-[node name="Spear" type="KinematicBody2D" groups=["spear"]]
+[node name="Spear" type="KinematicBody2D" groups=["damage", "free", "spear"]]
 collision_layer = 16
 collision_mask = 2
 script = ExtResource( 2 )

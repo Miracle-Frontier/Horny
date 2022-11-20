@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 42.0
 
-[node name="Rock" instance=ExtResource( 2 )]
+[node name="Rock" groups=["damage", "rock"] instance=ExtResource( 2 )]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 texture = ExtResource( 1 )

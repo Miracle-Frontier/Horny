@@ -1,16 +1,176 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=29 format=2]
 
-[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/actor1.png" type="Texture" id=1]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/animations/flying2.png" type="Texture" id=1]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/player/player.gd" type="Script" id=2]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/fx/damage2.mp3" type="AudioStream" id=3]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/fx/damage3.mp3" type="AudioStream" id=4]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/fx/damage1.mp3" type="AudioStream" id=5]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/animations/flying1.png" type="Texture" id=6]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/animations/grow.png" type="Texture" id=7]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/animations/wings.png" type="Texture" id=8]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/animations/shooting1.png" type="Texture" id=9]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/animations/shooting2.png" type="Texture" id=10]
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 132.25, 47.5 )
+extents = Vector2( 84, 17 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 53.5, 42.5 )
+extents = Vector2( 17, 23.875 )
+
+[sub_resource type="SpriteFrames" id=18]
+animations = [ {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("/GrowWings:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("/GrowWings:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("/FlyWings:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../GrowWings:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.54902 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../GrowWings:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "fly_wings"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../FlyWings:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 3, 2, 1 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "show_wings"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("../GrowWings:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../GrowWings:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.54902 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../FlyWings:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.54902 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "flashing_wings"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("../FlyWings:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.54902 ), Color( 1, 1, 1, 0.235294 ) ]
+}
 
 [sub_resource type="Animation" id=5]
 length = 0.001
@@ -60,10 +220,10 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 133.5, 47.5 )
+extents = Vector2( 84, 21.5 )
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 55.5, 44 )
+extents = Vector2( 24, 21 )
 
 [sub_resource type="GDScript" id=8]
 script/source = "extends Node
@@ -133,22 +293,116 @@ func play(node:Node) -> void:
 		spearFx.play()
 "
 
+[sub_resource type="Animation" id=16]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("GrowWings:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FlyWings:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "autoload"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("GrowWings:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FlyWings:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
 [node name="Player" type="KinematicBody2D"]
+z_index = 3
 collision_layer = 2
 collision_mask = 129
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -122.5, -59.5 )
-texture = ExtResource( 1 )
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 1, -25 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 10 )
+speed_scale = 2.0
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1, 5 )
+position = Vector2( 2, -3 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2( 81, -86 )
+position = Vector2( 76, -43.125 )
 shape = SubResource( 2 )
+
+[node name="GrowWings" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.54902 )
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( -25, -112 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+hframes = 4
+
+[node name="FlyWings" type="Sprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( -70, -28 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 8 )
+hframes = 5
+frame = 1
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -3, -25 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 18 )
+speed_scale = 2.0
+playing = true
+
+[node name="Shoot" type="AnimationPlayer" parent="."]
+
+[node name="Wings" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimationPlayer")
+anims/RESET = SubResource( 12 )
+anims/fly_wings = SubResource( 13 )
+anims/show_wings = SubResource( 11 )
+
+[node name="FlashingWings" type="AnimationPlayer" parent="Wings"]
+anims/RESET = SubResource( 15 )
+anims/flashing_wings = SubResource( 14 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 5 )
@@ -160,18 +414,18 @@ collision_layer = 2
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
-position = Vector2( -0.5, 3.5 )
+position = Vector2( 2, -3.5 )
 shape = SubResource( 6 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area"]
-position = Vector2( 80.5, -86 )
+position = Vector2( 85, -47 )
 shape = SubResource( 7 )
 
 [node name="Flasher" type="Node" parent="."]
 script = SubResource( 8 )
 
 [node name="Gun" type="Position2D" parent="."]
-position = Vector2( 150, -37 )
+position = Vector2( 94, -11 )
 
 [node name="DamageFx" type="Node" parent="."]
 script = SubResource( 9 )
@@ -184,6 +438,11 @@ stream = ExtResource( 3 )
 
 [node name="SpearDamage" type="AudioStreamPlayer" parent="DamageFx"]
 stream = ExtResource( 4 )
+
+[node name="GlobalReset" type="AnimationPlayer" parent="."]
+autoplay = "autoload"
+anims/RESET = SubResource( 16 )
+anims/autoload = SubResource( 17 )
 
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]

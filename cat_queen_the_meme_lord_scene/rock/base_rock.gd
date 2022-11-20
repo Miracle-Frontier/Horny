@@ -3,7 +3,7 @@ extends RigidBody2D
 const Boom:PackedScene = preload("res://cat_queen_the_meme_lord_scene/explosion/explusion.tscn")
 
 export var speed:float = 1.0
-export var armor:int = 3
+export var armor:int = 1
 
 var direction:Vector2 = Vector2.LEFT
 var clone:bool = false
