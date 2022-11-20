@@ -12,5 +12,5 @@ func create_rock(y_position:float, speed:float, scale:Vector2, inverse:bool) -> 
   rock.speed = speed
   rock._set_casle(scale)
   get_parent().add_child(rock)
-  rock.global_position.x = 1600 if inverse else 0
+  rock.global_position.x = global_position.x if inverse else 0-(global_position.x-1600)
   rock.global_position.y = y_position

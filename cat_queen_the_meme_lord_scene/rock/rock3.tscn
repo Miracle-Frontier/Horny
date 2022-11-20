@@ -7,7 +7,7 @@
 radius = 35.8227
 height = 24.8035
 
-[node name="Rock" instance=ExtResource( 2 )]
+[node name="Rock" groups=["damage", "rock"] instance=ExtResource( 2 )]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 texture = ExtResource( 1 )

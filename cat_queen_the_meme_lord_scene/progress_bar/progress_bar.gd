@@ -20,6 +20,9 @@ func _on_end() -> void:
 	emit_signal("is_over")
 
 
-func reset_time() -> void:
+func stop_time() -> void:
 	value = 0
+	timer.stop()
+	
+func start_time():
 	timer.start()

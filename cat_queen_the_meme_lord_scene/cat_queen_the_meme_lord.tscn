@@ -1,18 +1,64 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/start.png" type="Texture" id=1]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/spear/spear_spawner.tscn" type="PackedScene" id=2]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/screen_shake/screen_shake.tscn" type="PackedScene" id=3]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/progress_bar/progress_bar.tscn" type="PackedScene" id=4]
-[ext_resource path="res://dvornik_scene/assets/ui/white.png" type="Texture" id=6]
-[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/background.png" type="Texture" id=14]
-[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/fx/inverse.mp3" type="AudioStream" id=7]
-[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/spear.png" type="Texture" id=8]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/upgrade.png" type="Texture" id=5]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/ui/white.png" type="Texture" id=6]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/ui/ui_150.png" type="Texture" id=7]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/rock/rock_spawn.tscn" type="PackedScene" id=9]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/cat_queen_the_meme_lord.gd" type="Script" id=10]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/rainbow/gate_spawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/player/player.tscn" type="PackedScene" id=12]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/fx/inverse.mp3" type="AudioStream" id=13]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/assets/background.png" type="Texture" id=14]
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Upgrade:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Upgrade"
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Upgrade:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.02, 0.1, 0.54, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "finish_upgrade_loop"
+} ]
+}
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 602.5, 460 )
@@ -29,9 +75,20 @@ extents = Vector2( 866, 631.5 )
 [node name="CatQueenTheMemeLord" type="Node2D"]
 script = ExtResource( 10 )
 
+[node name="Upgrade" type="Sprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 810, 438 )
+texture = ExtResource( 5 )
+
+[node name="UpgradeWings" type="AnimationPlayer" parent="Upgrade"]
+root_node = NodePath("../..")
+anims/RESET = SubResource( 5 )
+anims/Upgrade = SubResource( 6 )
+
 [node name="Bg" type="Node2D" parent="."]
 
 [node name="Stars1" type="CPUParticles2D" parent="Bg"]
+modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 1654, 449 )
 amount = 100
 lifetime = 8.0
@@ -61,14 +118,30 @@ initial_velocity_random = 0.5
 scale_amount = 0.05
 scale_amount_random = 0.19
 
+[node name="Stars3" type="CPUParticles2D" parent="Bg"]
+position = Vector2( 799, -381 )
+rotation = 1.5708
+amount = 200
+lifetime = 8.0
+texture = ExtResource( 1 )
+emission_shape = 2
+emission_rect_extents = Vector2( 0, 900 )
+direction = Vector2( 0, 0 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 2000.0
+initial_velocity_random = 0.5
+scale_amount = 0.05
+scale_amount_random = 0.19
+
 [node name="Player" parent="." instance=ExtResource( 12 )]
-position = Vector2( 1417, 119 )
+position = Vector2( 802, 248 )
 
 [node name="GateSpawner" parent="." instance=ExtResource( 11 )]
 position = Vector2( 1742, -4 )
 
 [node name="RockSpawn" parent="." instance=ExtResource( 9 )]
-position = Vector2( 1654, -6 )
+position = Vector2( 2810, -6 )
 
 [node name="SpearSpawner" parent="." instance=ExtResource( 2 )]
 position = Vector2( 817, 483 )
@@ -103,9 +176,10 @@ current = true
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="ProgressBar" parent="UI" instance=ExtResource( 4 )]
-max_value = 5.0
+min_value = 36.0
+value = 36.0
+texture_under = ExtResource( 7 )
 texture_progress = ExtResource( 6 )
-tint_progress = Color( 1, 0, 0.854902, 1 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -114,14 +188,11 @@ motion_mirroring = Vector2( 1600, 900 )
 
 [node name="Background" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
 modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 14 )
 centered = false
-<<<<<<< HEAD
-=======
-__meta__ = {
-"_edit_lock_": true
-}
->>>>>>> master
 
 [node name="InverseFx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
 volume_db = -80.0
+
+[connection signal="value_changed" from="UI/ProgressBar" to="." method="_on_ProgressBar_value_changed"]
