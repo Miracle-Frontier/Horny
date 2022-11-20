@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stand.png-a1ace3fd43361ff7a5c0d68ac25484dc.stex"
+path="res://.import/leave_not_active.png-4d55b22f30cc9ae236fc913b4abdd8d0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kitchen_scene/condiments_stand/stand.png"
-dest_files=[ "res://.import/stand.png-a1ace3fd43361ff7a5c0d68ac25484dc.stex" ]
+source_file="res://kitchen_scene/ui/assets/leave_not_active.png"
+dest_files=[ "res://.import/leave_not_active.png-4d55b22f30cc9ae236fc913b4abdd8d0.stex" ]
 
 [params]
 

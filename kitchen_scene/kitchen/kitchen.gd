@@ -4,6 +4,8 @@ const FADE_TIME:float = 0.5
 
 onready var kitchen:Node = $Self
 onready var current_room:Node = kitchen
+onready var inventory:Control = $Control/Inventory
+onready var leave_button:TextureButton = $Control/Leave
 
 var fade_action:bool = false
 
@@ -17,14 +19,14 @@ onready var rooms:Dictionary = {
 }
 
 func _ready() -> void:
-	$UI/Control/Leave.visible = false
+	leave_button.visible = false
 	$Self/Plate.connect("press_to", self, "press_to")
 	$Self/Fridge.connect("press_to", self, "press_to")
 	$Self/Saltpepperketchup.connect("press_to", self, "press_to")
 	$Self/Pot.connect("press_to", self, "press_to")
 	$Self/Skovoroda.connect("press_to", self, "press_to")
 	$Self/Wash.connect("press_to", self, "press_to")
-	$UI/Control/Leave.connect("pressed", self, "leave")
+	leave_button.connect("pressed", self, "leave")
 	
 	for room in $Rooms.get_children():
 		room.modulate.a = 0
@@ -32,7 +34,7 @@ func _ready() -> void:
 
 func press_to(node:Node) -> void:
 	var room:Node = rooms[node]
-	if room == self:
+	if room == kitchen:
 		return
 	_open_room(room)
 
@@ -49,9 +51,8 @@ func _close_current_room() -> void:
 func _open_room(room:Node2D) -> void:
 	if fade_action:
 		return
-	print("_open_room")	
 	fade_action = true
-	$UI/Control/Leave.visible = true if current_room == kitchen else false
+	leave_button.visible = false
 	_close_current_room()
 	room.visible = true
 	current_room = room
@@ -59,7 +60,16 @@ func _open_room(room:Node2D) -> void:
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(room, "modulate:a", 1.0, FADE_TIME)
 	yield(tween, "finished")
+	#update_control_inventory(room)
+	leave_button.visible = true if room != kitchen else false
 	fade_action = false
+	
+	
+func update_control_inventory(room:Node2D) -> void:
+	if room == kitchen:
+		$Control.add_child(inventory)
+	else:
+		room.get_node("Control").add_child(inventory)	
 	
 
 func leave() -> void:

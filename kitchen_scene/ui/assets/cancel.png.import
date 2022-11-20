@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mustard.png-8c41191ebf72706459d54d40ecdd8ef5.stex"
+path="res://.import/cancel.png-743f80cd566c8938f8196a8a9a8b5f50.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kitchen_scene/condiments_stand/mustard.png"
-dest_files=[ "res://.import/mustard.png-8c41191ebf72706459d54d40ecdd8ef5.stex" ]
+source_file="res://kitchen_scene/ui/assets/cancel.png"
+dest_files=[ "res://.import/cancel.png-743f80cd566c8938f8196a8a9a8b5f50.stex" ]
 
 [params]
 

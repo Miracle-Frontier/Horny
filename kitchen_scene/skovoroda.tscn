@@ -1,10 +1,33 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://kitchen_scene/skovoroda/skovoroda.png" type="Texture" id=1]
-[ext_resource path="res://kitchen_scene/ui/ui.tscn" type="PackedScene" id=2]
 [ext_resource path="res://kitchen_scene/skovoroda/cooker.png" type="Texture" id=3]
-[ext_resource path="res://kitchen_scene/product/skovoroda/butter.tscn" type="PackedScene" id=4]
-[ext_resource path="res://kitchen_scene/product/skovoroda/butter_skovoroda.tscn" type="PackedScene" id=5]
+[ext_resource path="res://kitchen_scene/skovoroda/products/butter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://kitchen_scene/place/place.tscn" type="PackedScene" id=6]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Place
+
+const ButterInSkovoroda:PackedScene = preload(\"res://kitchen_scene/skovoroda/products/butter_skovoroda.tscn\")
+
+func drop_data(position: Vector2, data:Dictionary) -> void:
+	var product:Product = data[\"product\"]
+	if product.is_in_group(\"butter\"):
+		create_butter_in_skovoroda()
+		return
+		
+	add_to_place(product, get_global_mouse_position())	
+	
+func create_butter_in_skovoroda() -> void:
+	var butter_in_skovoroda:Control = ButterInSkovoroda.instance()
+	var pos = Vector2(rect_global_position.x, rect_global_position.y)
+	add_to_place(butter_in_skovoroda, pos)
+
+func can_drop_data(position: Vector2, data:Dictionary) -> bool:
+	if data.has(\"product\") and data[\"product\"].is_in_group(\"butter_scovoroda\"):
+		return false
+	return .can_drop_data(position, data) 
+"
 
 [node name="Skovoroda" type="Node2D"]
 
@@ -13,14 +36,22 @@ position = Vector2( 803, 451 )
 texture = ExtResource( 3 )
 
 [node name="Skovoroda" type="Sprite" parent="."]
-position = Vector2( 994, 417 )
+position = Vector2( 982, 426 )
 texture = ExtResource( 1 )
 
-[node name="Product2" parent="." instance=ExtResource( 5 )]
-visible = false
-position = Vector2( 773, 410 )
+[node name="PlaceExtande" parent="." instance=ExtResource( 6 )]
+margin_left = 525.0
+margin_top = 151.0
+margin_right = 1061.0
+margin_bottom = 720.0
+script = SubResource( 1 )
 
-[node name="Product" parent="." instance=ExtResource( 4 )]
-position = Vector2( 151, 283 )
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 
-[node name="UI" parent="." instance=ExtResource( 2 )]
+[node name="Butter" parent="Control" instance=ExtResource( 4 )]
+margin_left = 14.0
+margin_top = 39.0
+margin_right = 283.0
+margin_bottom = 585.0

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/leave_not_active.png-3edcce48e015d3746b75a9aebeaaec19.stex"
+path="res://.import/salt.png-8f14242b9136f1850b636271712f320b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kitchen_scene/ui/leave_not_active.png"
-dest_files=[ "res://.import/leave_not_active.png-3edcce48e015d3746b75a9aebeaaec19.stex" ]
+source_file="res://kitchen_scene/condiments_stand/assets/salt.png"
+dest_files=[ "res://.import/salt.png-8f14242b9136f1850b636271712f320b.stex" ]
 
 [params]
 

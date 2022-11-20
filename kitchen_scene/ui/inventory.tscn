@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://kitchen_scene/ui/inventory.gd" type="Script" id=1]
+[ext_resource path="res://kitchen_scene/ui/inventory_item/inventory_slot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://kitchen_scene/ui/assets/cancel_pressed.png" type="Texture" id=3]
+[ext_resource path="res://kitchen_scene/ui/assets/cancel.png" type="Texture" id=5]
+
+[node name="Inventory" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Cancel" type="TextureButton" parent="."]
+margin_left = 25.0
+margin_top = 690.0
+margin_right = 212.0
+margin_bottom = 868.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 3 )
+
+[node name="Items" type="HBoxContainer" parent="."]
+margin_left = 579.0
+margin_top = 725.0
+margin_right = 1082.0
+margin_bottom = 861.0
+size_flags_horizontal = 8
+
+[node name="Item1" parent="Items" instance=ExtResource( 2 )]
+
+[node name="Item2" parent="Items" instance=ExtResource( 2 )]
+margin_left = 169.0
+margin_right = 334.0
+
+[node name="Item3" parent="Items" instance=ExtResource( 2 )]
+margin_left = 338.0
+margin_right = 503.0

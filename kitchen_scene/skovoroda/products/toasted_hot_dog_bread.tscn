@@ -7,9 +7,11 @@
 extents = Vector2( 132.25, 78.75 )
 
 [node name="Product" groups=["toasted_hot_dog_bread"] instance=ExtResource( 1 )]
+texture = ExtResource( 2 )
 draggable = false
 
 [node name="Sprite" parent="." index="0"]
+visible = false
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]

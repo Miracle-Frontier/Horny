@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://kitchen_scene/product/fridge/onion.tscn" type="PackedScene" id=1]
 [ext_resource path="res://kitchen_scene/product/fridge/milk.tscn" type="PackedScene" id=2]
@@ -8,12 +8,19 @@
 [ext_resource path="res://kitchen_scene/fridge/background.png" type="Texture" id=6]
 [ext_resource path="res://kitchen_scene/product/fridge/hot_dog_bread.tscn" type="PackedScene" id=7]
 [ext_resource path="res://kitchen_scene/product/fridge/beef.tscn" type="PackedScene" id=8]
-[ext_resource path="res://kitchen_scene/ui/ui.tscn" type="PackedScene" id=9]
-[ext_resource path="res://kitchen_scene/clickable/clickable_sprite.tscn" type="PackedScene" id=10]
 [ext_resource path="res://kitchen_scene/product/fridge/broccoli.tscn" type="PackedScene" id=11]
 [ext_resource path="res://kitchen_scene/product/fridge/tomatoes.tscn" type="PackedScene" id=12]
 [ext_resource path="res://kitchen_scene/product/fridge/pickles.tscn" type="PackedScene" id=13]
 [ext_resource path="res://kitchen_scene/fridge/fridge.gd" type="Script" id=14]
+[ext_resource path="res://kitchen_scene/fridge/tomatoes.png" type="Texture" id=16]
+[ext_resource path="res://kitchen_scene/fridge/sausages.png" type="Texture" id=17]
+[ext_resource path="res://kitchen_scene/fridge/milk.png" type="Texture" id=18]
+[ext_resource path="res://kitchen_scene/fridge/beef.png" type="Texture" id=19]
+[ext_resource path="res://kitchen_scene/fridge/eggs.png" type="Texture" id=20]
+[ext_resource path="res://kitchen_scene/fridge/pickles.png" type="Texture" id=21]
+[ext_resource path="res://kitchen_scene/fridge/lettuce.png" type="Texture" id=22]
+[ext_resource path="res://kitchen_scene/fridge/hot_dog_bread.png" type="Texture" id=23]
+[ext_resource path="res://kitchen_scene/fridge/onion.png" type="Texture" id=24]
 
 [node name="Fridge" type="Node2D"]
 position = Vector2( -2, -4 )
@@ -23,36 +30,75 @@ script = ExtResource( 14 )
 position = Vector2( 803, 452 )
 texture = ExtResource( 6 )
 
-[node name="UI" parent="." instance=ExtResource( 9 )]
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 
-[node name="ClickableSprite" parent="." instance=ExtResource( 10 )]
+[node name="Product" parent="Control" instance=ExtResource( 8 )]
+margin_left = 317.0
+margin_top = 300.0
+margin_right = 560.0
+margin_bottom = 378.0
+texture = ExtResource( 19 )
 
-[node name="Product" parent="." instance=ExtResource( 8 )]
-position = Vector2( 407, 335 )
+[node name="Product2" parent="Control" instance=ExtResource( 11 )]
+margin_left = 794.0
+margin_top = 531.0
+margin_right = 964.0
+margin_bottom = 683.0
 
-[node name="Product2" parent="." instance=ExtResource( 11 )]
-position = Vector2( 821, 592 )
+[node name="Product3" parent="Control" instance=ExtResource( 3 )]
+margin_left = 1244.0
+margin_top = 193.0
+margin_right = 1483.0
+margin_bottom = 387.0
+texture = ExtResource( 20 )
 
-[node name="Product3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1346, 266 )
+[node name="Product4" parent="Control" instance=ExtResource( 7 )]
+margin_left = 994.0
+margin_top = 458.0
+margin_right = 1129.0
+margin_bottom = 683.0
+texture = ExtResource( 23 )
 
-[node name="Product4" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1058, 566 )
+[node name="Product5" parent="Control" instance=ExtResource( 4 )]
+margin_left = 615.0
+margin_top = 20.0
+margin_right = 822.0
+margin_bottom = 148.0
+texture = ExtResource( 22 )
 
-[node name="Product5" parent="." instance=ExtResource( 4 )]
-position = Vector2( 371, 99 )
+[node name="Product6" parent="Control" instance=ExtResource( 2 )]
+margin_left = 1219.0
+margin_top = 466.0
+margin_right = 1344.0
+margin_bottom = 739.0
+texture = ExtResource( 18 )
 
-[node name="Product6" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1290, 618 )
+[node name="Product7" parent="Control" instance=ExtResource( 1 )]
+margin_left = 291.0
+margin_top = 549.0
+margin_right = 453.0
+margin_bottom = 689.0
+texture = ExtResource( 24 )
 
-[node name="Product7" parent="." instance=ExtResource( 1 )]
-position = Vector2( 337, 612 )
+[node name="Product8" parent="Control" instance=ExtResource( 13 )]
+margin_left = 948.0
+margin_top = 181.0
+margin_right = 1116.0
+margin_bottom = 398.0
+texture = ExtResource( 21 )
 
-[node name="Product8" parent="." instance=ExtResource( 13 )]
-position = Vector2( 1047, 277 )
+[node name="Product9" parent="Control" instance=ExtResource( 5 )]
+margin_left = 671.0
+margin_top = 271.0
+margin_right = 860.0
+margin_bottom = 382.0
+texture = ExtResource( 17 )
 
-[node name="Product9" parent="." instance=ExtResource( 5 )]
-position = Vector2( 736, 329 )
-
-[node name="Product10" parent="." instance=ExtResource( 12 )]
-position = Vector2( 521, 608 )
+[node name="Product10" parent="Control" instance=ExtResource( 12 )]
+margin_left = 513.0
+margin_top = 544.0
+margin_right = 700.0
+margin_bottom = 690.0
+texture = ExtResource( 16 )

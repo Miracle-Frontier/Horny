@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pepper.png-ecc6cd3b861bf1973f8172e8cbeb13c1.stex"
+path="res://.import/leave.png-88c55a9adb2b7258f538dac678efe7d4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kitchen_scene/condiments_stand/pepper.png"
-dest_files=[ "res://.import/pepper.png-ecc6cd3b861bf1973f8172e8cbeb13c1.stex" ]
+source_file="res://kitchen_scene/ui/assets/leave.png"
+dest_files=[ "res://.import/leave.png-88c55a9adb2b7258f538dac678efe7d4.stex" ]
 
 [params]
 

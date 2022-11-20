@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cancel.png-a60e51e20d4b297f785ebeb2717a5de1.stex"
+path="res://.import/pepper.png-b70b30857174fd12444003e6e595dee0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kitchen_scene/ui/cancel.png"
-dest_files=[ "res://.import/cancel.png-a60e51e20d4b297f785ebeb2717a5de1.stex" ]
+source_file="res://kitchen_scene/condiments_stand/assets/pepper.png"
+dest_files=[ "res://.import/pepper.png-b70b30857174fd12444003e6e595dee0.stex" ]
 
 [params]
 

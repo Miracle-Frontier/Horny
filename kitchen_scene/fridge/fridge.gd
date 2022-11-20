@@ -4,6 +4,8 @@ var positions:Dictionary = {}
 
 
 func _ready() -> void:
+	if true:
+		return
 	$Product.connect("drag_start", self, "drag_start")
 	$Product2.connect("drag_start", self, "drag_start")
 	$Product3.connect("drag_start", self, "drag_start")
