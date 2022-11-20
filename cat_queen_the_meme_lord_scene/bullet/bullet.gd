@@ -2,7 +2,7 @@ extends Area2D
 
 
 var direction:Vector2 = Vector2.RIGHT
-var speed: float = 10
+var speed: float = 20
 
 onready var smoketrail:Line2D = $Smoketrail
 
@@ -20,10 +20,10 @@ func _process(delta: float) -> void:
 		modulate.a *= 0.95
 
 func _on_Bullet_body_entered(body: Node) -> void:
-	if body.has_method("damage"):
+	if body.is_in_group("rock"):
 			body.damage(1.0)
-	else:
-		print(str(body) + " no has damage method!")
+	#else:
+	#	print(str(body) + " no has damage method!")
 	speed = 0
 	remove_child($Sprite)
 	remove_child($CollisionShape2D)

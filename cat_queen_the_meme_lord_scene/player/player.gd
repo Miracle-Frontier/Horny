@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+class_name PlayerCat
+
 signal player_contacted
 
 
@@ -28,12 +30,23 @@ onready var flasher:Node = $Flasher
 onready var invulnerability:bool = false
 onready var invulnerability_timer:float = INVULNERABILITY_TIME
 
+var controls_blocked = false
+
 func _physics_process(delta: float) -> void:
-	direction.x = float(Input.is_action_pressed("ui_right")) - float(Input.is_action_pressed("ui_left"))
-	direction.y = float(Input.is_action_pressed("ui_down")) - float(Input.is_action_pressed("ui_up"))
-	direction = direction.normalized()
-	if Input.is_action_just_pressed("ui_accept"):
-		_fire()
+	
+	direction = Vector2(0,0)
+	if not controls_blocked:
+		direction.x = float(Input.is_action_pressed("ui_right")) - float(Input.is_action_pressed("ui_left"))
+		direction.y = float(Input.is_action_pressed("ui_down")) - float(Input.is_action_pressed("ui_up"))
+		direction = direction.normalized()
+		if Input.is_action_pressed("ui_accept"):
+			_fire()
+			$Sprite.modulate.a = 0
+			$AnimatedSprite.modulate.a = 1
+		else:
+			$Sprite.modulate.a = 1
+			$AnimatedSprite.modulate.a = 0
+	
 	velocity = lerp(velocity, direction * speed, acceleration * delta)
 	velocity = lerp(velocity, Vector2.ZERO, friction * delta)
 
@@ -46,16 +59,15 @@ func _physics_process(delta: float) -> void:
 	elif direction.x < 0:
 		transform.x.x = -abs(transform.x.x)
 
-
 func _fire() -> void:
 	if not fire_ready:
 		return
 	fire_ready = false	
 	var bullet:Node2D = Bullet.instance()
 	bullet.direction.x = transform.x.x
-	get_tree().current_scene.add_child(bullet)
+	get_parent().add_child(bullet)
 	bullet.global_position = gun.global_position
-	yield(get_tree().create_timer(0.2),"timeout")
+	yield(get_tree().create_timer(0.001),"timeout")
 	fire_ready = true
 
 
@@ -81,8 +93,8 @@ func _player_contacted() -> void:
 
 
 func _on_Area_body_entered(body: Node) -> void:
-	contact_bodys.append(body)
-
+	if body.is_in_group("damage"):
+		contact_bodys.append(body)
 
 func _on_Area_body_exited(body: Node) -> void:
 	contact_bodys.remove(contact_bodys.find(body)) 

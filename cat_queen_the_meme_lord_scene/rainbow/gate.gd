@@ -20,6 +20,7 @@ func set_gate_size(up_y: float, low_y: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	#print(speed)
 	position.x -= speed * delta
 	if open:
 		_open()
