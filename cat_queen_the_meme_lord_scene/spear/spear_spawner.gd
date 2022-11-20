@@ -11,16 +11,25 @@ enum Side { UP, DOWN, LEFT, RIGHT }
 
 
 func create_spear(var side:int, position_vlue:float) -> void:
-	#var warning:Node2D = _create_warning(side, position_vlue)
-	#yield(get_tree().create_timer(2.0), "timeout")
-	#warning.queue_free()
+	var warning:Node2D = _create_warning(side, position_vlue)
+	yield(get_tree().create_timer(1.0), "timeout")
+	warning.queue_free()
 	_create_spear(side, position_vlue)
 
 
 func _create_warning(var side:int, position_value:float) -> Node2D:
-	var warning:Node2D = Warning.instance()
+	var warning:Sprite = Warning.instance()
 	get_parent().add_child(warning)
-	warning.rotation_degrees = degrees_map[side]
+	match side:
+		Side.LEFT:
+			warning.offset.x = -35
+		Side.RIGHT:
+			warning.offset.x = 35
+		Side.DOWN:
+			warning.offset.y = 40
+		Side.UP:
+			warning.offset.y = -40
+	#warning.rotation_degrees = degrees_map[side]
 	warning.global_position = _create_position(side, position_value)
 	return warning
 

@@ -81,15 +81,27 @@ texture = ExtResource( 3 )
 [node name="Rooms" type="Node" parent="."]
 
 [node name="CuttingBoard" parent="Rooms" instance=ExtResource( 18 )]
+visible = false
+self_modulate = Color( 1, 1, 1, 0 )
 
 [node name="Fridge" parent="Rooms" instance=ExtResource( 10 )]
+visible = false
+self_modulate = Color( 1, 1, 1, 0 )
 
 [node name="Mixer" parent="Rooms" instance=ExtResource( 15 )]
+visible = false
+self_modulate = Color( 1, 1, 1, 0 )
 
 [node name="Pot" parent="Rooms" instance=ExtResource( 17 )]
+visible = false
+self_modulate = Color( 1, 1, 1, 0 )
 
 [node name="Skovoroda" parent="Rooms" instance=ExtResource( 16 )]
+visible = false
+self_modulate = Color( 1, 1, 1, 0 )
 
 [node name="Wash" parent="Rooms" instance=ExtResource( 11 )]
+visible = false
+self_modulate = Color( 1, 1, 1, 0 )
 
 [node name="UI" parent="." instance=ExtResource( 5 )]
