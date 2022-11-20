@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/cat1.mp3-17ea8ca833cdc52f8566fcc7a1b2b8bc.mp3str"
+
+[deps]
+
+source_file="res://cat_queen_the_meme_lord_scene/assets/cat/cat1.mp3"
+dest_files=[ "res://.import/cat1.mp3-17ea8ca833cdc52f8566fcc7a1b2b8bc.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

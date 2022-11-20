@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/spear.png" type="Texture" id=1]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/spear/spear.gd" type="Script" id=2]
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 752, 29.25 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 833.75, 20 )
+
 [node name="Spear" type="KinematicBody2D" groups=["damage", "free", "spear"]]
+z_index = 6
 collision_layer = 16
 collision_mask = 2
 script = ExtResource( 2 )
@@ -13,16 +20,25 @@ texture = ExtResource( 1 )
 offset = Vector2( -843, 0 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2( -194.899, 106.573 )
-scale = Vector2( 0.435859, 0.881825 )
-polygon = PoolVector2Array( 28, -29, 447.161, -116.319, 26.7264, -221.782 )
+position = Vector2( -278, 203 )
+scale = Vector2( 0.878184, 1.69233 )
+polygon = PoolVector2Array( 70.6003, -46.0904, 420.186, -122.317, 72.8777, -207.407 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -936, 3.75 )
+shape = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="." groups=["damage"]]
 collision_layer = 0
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Area2D"]
-position = Vector2( 0, 4 )
-polygon = PoolVector2Array( -186, -100, -186, 82, 6, 1 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -842.75, 4 )
+shape = SubResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2( 25, -4 )
+scale = Vector2( 1.2, 1.2 )
+polygon = PoolVector2Array( -190, 99, 35, -1, -193, -107 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

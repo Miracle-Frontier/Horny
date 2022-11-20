@@ -32,6 +32,10 @@ onready var invulnerability_timer:float = INVULNERABILITY_TIME
 
 var controls_blocked = false
 
+var fake_fire
+
+var bullets_are_enabled = false
+
 func _physics_process(delta: float) -> void:
 	
 	direction = Vector2(0,0)
@@ -39,7 +43,7 @@ func _physics_process(delta: float) -> void:
 		direction.x = float(Input.is_action_pressed("ui_right")) - float(Input.is_action_pressed("ui_left"))
 		direction.y = float(Input.is_action_pressed("ui_down")) - float(Input.is_action_pressed("ui_up"))
 		direction = direction.normalized()
-		if Input.is_action_pressed("ui_accept"):
+		if (bullets_are_enabled and (Input.is_action_pressed("ui_accept") or Input.is_mouse_button_pressed( 1 ))) or fake_fire:
 			_fire()
 			$Sprite.modulate.a = 0
 			$AnimatedSprite.modulate.a = 1
@@ -80,7 +84,7 @@ func _process(delta: float) -> void:
 		time_between_emit_signal += delta
 		if time_between_emit_signal >= EMIT_TIMER:
 			_player_contacted()
-			#print("long player contac!")
+			#print("long player contac!")s
 
 
 func _player_contacted() -> void:
@@ -94,7 +98,11 @@ func _player_contacted() -> void:
 
 func _on_Area_body_entered(body: Node) -> void:
 	if body.is_in_group("damage"):
+		print(body)
 		contact_bodys.append(body)
+
+
 
 func _on_Area_body_exited(body: Node) -> void:
 	contact_bodys.remove(contact_bodys.find(body)) 
+

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/start.png" type="Texture" id=1]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/spear/spear_spawner.tscn" type="PackedScene" id=2]
@@ -7,12 +7,30 @@
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/upgrade.png" type="Texture" id=5]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/ui/white.png" type="Texture" id=6]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/ui/ui_150.png" type="Texture" id=7]
+[ext_resource path="res://cat_queen_the_meme_lord_scene/spear/spear.mp3" type="AudioStream" id=8]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/rock/rock_spawn.tscn" type="PackedScene" id=9]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/cat_queen_the_meme_lord.gd" type="Script" id=10]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/rainbow/gate_spawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/player/player.tscn" type="PackedScene" id=12]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/fx/inverse.mp3" type="AudioStream" id=13]
 [ext_resource path="res://cat_queen_the_meme_lord_scene/assets/background.png" type="Texture" id=14]
+[ext_resource path="res://dvornik_scene/assets/mouse.png" type="Texture" id=15]
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 0, 140, 160 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 15 )
+region = Rect2( 140, 0, 140, 160 )
+
+[sub_resource type="SpriteFrames" id=21]
+animations = [ {
+"frames": [ SubResource( 19 ), SubResource( 20 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="Animation" id=5]
 length = 0.001
@@ -75,6 +93,15 @@ extents = Vector2( 866, 631.5 )
 [node name="CatQueenTheMemeLord" type="Node2D"]
 script = ExtResource( 10 )
 
+[node name="Mouse" type="AnimatedSprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 803, 119 )
+scale = Vector2( 0.6, 0.6 )
+z_index = 4
+frames = SubResource( 21 )
+speed_scale = 0.7
+playing = true
+
 [node name="Upgrade" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 810, 438 )
@@ -88,7 +115,6 @@ anims/Upgrade = SubResource( 6 )
 [node name="Bg" type="Node2D" parent="."]
 
 [node name="Stars1" type="CPUParticles2D" parent="Bg"]
-modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 1654, 449 )
 amount = 100
 lifetime = 8.0
@@ -137,6 +163,13 @@ scale_amount_random = 0.19
 [node name="Player" parent="." instance=ExtResource( 12 )]
 position = Vector2( 802, 248 )
 
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+position = Vector2( 1, -129 )
+scale = Vector2( 0.6, 0.6 )
+remote_path = NodePath("../../Mouse")
+update_rotation = false
+update_scale = false
+
 [node name="GateSpawner" parent="." instance=ExtResource( 11 )]
 position = Vector2( 1742, -4 )
 
@@ -176,12 +209,12 @@ current = true
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="ProgressBar" parent="UI" instance=ExtResource( 4 )]
-min_value = 36.0
-value = 36.0
+max_value = 57.0
 texture_under = ExtResource( 7 )
 texture_progress = ExtResource( 6 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+follow_viewport_enable = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2( 1600, 900 )
@@ -190,9 +223,33 @@ motion_mirroring = Vector2( 1600, 900 )
 modulate = Color( 1, 1, 1, 0 )
 texture = ExtResource( 14 )
 centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Background2" type="Sprite" parent="."]
+position = Vector2( 0, 900 )
+texture = ExtResource( 14 )
+centered = false
+flip_v = true
+
+[node name="Background3" type="Sprite" parent="."]
+position = Vector2( 0, -900 )
+texture = ExtResource( 14 )
+centered = false
+flip_v = true
+
+[node name="Background4" type="Sprite" parent="."]
+position = Vector2( -1600, 0 )
+texture = ExtResource( 14 )
+centered = false
 
 [node name="InverseFx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
 volume_db = -80.0
+
+[node name="SpearFx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+pitch_scale = 0.75
 
 [connection signal="value_changed" from="UI/ProgressBar" to="." method="_on_ProgressBar_value_changed"]

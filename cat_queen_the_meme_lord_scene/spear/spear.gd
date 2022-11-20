@@ -54,16 +54,17 @@ func _destroy() -> void:
 	var tween = create_tween()
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(self, "modulate:a", 0.0, 0.3)
-	
-	tween.tween_callback(self, "queue_free")
+	yield(get_tree().create_timer(0.3), "timeout")
+	queue_free()
 
 func _stop() -> void:
-	print("Stop")
+	get_parent().get_node("SpearFx").play()
+	get_parent().shake_screen()
 	_speed = 0
 	move = false
 	action = false
-	yield(get_tree().create_timer(0.5), "timeout")
-	$CollisionPolygon2D.call_deferred("set_disabled", true)
+	yield(get_tree().create_timer(0.3), "timeout")
+	#$CollisionPolygon2D.call_deferred("set_disabled", true)
 	_destroy()
 
 
@@ -71,3 +72,7 @@ func _on_Area2D_body_entered(body: Node) -> void:
 	if not action or body == self:
 		return
 	_stop()
+	if body.is_in_group("player"):
+		print("LOL")
+		body._on_Area_body_entered(self)
+		

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/spear.mp3-cde77ad16f47ed2552343eece09bb483.mp3str"
+
+[deps]
+
+source_file="res://cat_queen_the_meme_lord_scene/spear/spear.mp3"
+dest_files=[ "res://.import/spear.mp3-cde77ad16f47ed2552343eece09bb483.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -28,7 +28,7 @@
 		},
 		{
 			"event_id": "dialogic_024",
-			"set_theme": "theme-1668694683.cfg"
+			"set_theme": "theme-1668771013.cfg"
 		},
 		{
 			"character": "",
@@ -49,18 +49,46 @@
 			"character": "",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "- Ehehehe.. *gulps*"
+			"text": "- Ehehehe.. *gulps*. I sense someone's presense."
 		},
 		{
 			"event_id": "dialogic_023",
-			"hide_dialogbox": false,
-			"wait_seconds": 1
+			"hide_dialogbox": true,
+			"wait_seconds": 2
+		},
+		{
+			"event_id": "dialogic_024",
+			"set_theme": "theme-1668947014.cfg"
+		},
+		{
+			"audio": "play",
+			"audio_bus": "Master",
+			"event_id": "dialogic_030",
+			"event_name": "AudioEvent",
+			"file": "res://cat_queen_the_meme_lord_scene/assets/cat/cat4.mp3",
+			"volume": 0
 		},
 		{
 			"character": "",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "Why do i hear meowing?"
+			"text": "You, pitiful mREow ! ! YOu shall dieE frRom Mmyr SPears And Rainbows!"
+		},
+		{
+			"event_id": "dialogic_024",
+			"set_theme": "theme-1668771013.cfg"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "- Why do i hear meowing?"
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "- Hm, must be the wind.."
 		},
 		{
 			"event_id": "dialogic_022",
